@@ -20,7 +20,7 @@ export default function Button({
 }: ButtonProps) {
   const widthChars = titleButton.length;
   const handleButtonClick = () => {
-    console.log("Button clicked");
+    alert("Button clicked");
   };
 
   return (

@@ -46,7 +46,7 @@ export default function Select({
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
-  
+
 
   return (
     <SelectContainer ref={selectRef}>

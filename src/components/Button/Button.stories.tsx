@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import Button from "./Button";
+import userEvent from "@testing-library/user-event";
+import { within } from "@testing-library/dom";
 
 
 const meta: Meta<typeof Button> = {
@@ -31,4 +33,13 @@ export const Default: Story = {
   render: (args) => (
     <Button {...args} />
   ),
+  
+
+  // play function per simulare il click
+  play: async ({ canvasElement }) => {
+    const canvas = within(canvasElement);
+    const button = canvas.getByRole("button");
+    await userEvent.click(button);
+    alert("Button clicked!");
+  },
 };

@@ -26,6 +26,7 @@ const meta: Meta<typeof Box> = {
     content: { control: "text", name: "Text" },
     primaryColor: { control: "color", name: "Primary Color" },
     secondaryColor: { control: "color", name: "Secondary Color" },
+    backgroundColor: { control: "color", name: "Background Color" },
   },
 };
 
@@ -37,6 +38,7 @@ export const Default: Story = {
     content: "Retro gaming UI is thought for nostalgic guys who love pixel art, retro games, vintage vibes, Y2K and 8-bit aesthetics.",
     primaryColor: "#0f172b",
     secondaryColor: "#515969",
+    backgroundColor: "#fff",
   },
   render: ({ content, ...args }) => (
     <Box {...args} content={<div>{content}</div>} />

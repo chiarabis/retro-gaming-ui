@@ -8,9 +8,20 @@ const meta: Meta<typeof CharactersProps> = {
     component: Characters,
     argTypes: {
         count: { control: "number", name: "Count"},
+        variant: {
+            name: "Variant",
+            control: "radio",
+            options: ["ghost", "kawaii", "onion"],
+        },
         showItem: {
             name: "Show Item",
             control: "boolean",
+        },
+        itemVariant: {
+            name: "Item Variant",
+            control: "radio",
+            options: ["knife", "gun"],
+            if: { arg: "showItem", eq: true }
         },
         color: { control: "color", name: "Color" },
         border: { control: "color", name: "Border" },
@@ -36,14 +47,16 @@ const meta: Meta<typeof CharactersProps> = {
 export default meta;
 type Story = StoryObj<typeof CharactersProps>;
 
-export const Ghost: Story = {
+export const Default: Story = {
     args: {
         count: 15,
+        variant: "ghost",
         showItem: true,
+        itemVariant: "knife",
         color: "#fff",
         border: "#000",
-        firstColorItem: "#fff",
-        secondColorItem: "#28643a",
+        firstColorItem: "#8f8f8f",
+        secondColorItem: "#153e6d",
         thirdColorItem: "#5d9741",
         backgroundColor: "#7999eb",
     },

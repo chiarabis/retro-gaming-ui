@@ -34,17 +34,17 @@ type ParticleAttrs = {
 //opacità minore per bubble
 const getAlpha = (variant?: "pois" | "bubble") => variant === "bubble" ? 0.35 : 1;
 
-export const Container = styled.div<{ backgroundColor?: string}>`
-    position: absolute;
-    top:0;
-    left:0;
-    width: 100%;
-    height: 100vh;
-    overflow: hidden;
-    pointer-events: none;
-    background-color: ${({ backgroundColor }) => backgroundColor};
-    z-index: -1;
-`;
+// export const Container = styled.div<{ backgroundColor?: string}>`
+//     position: absolute;
+//     top:0;
+//     left:0;
+//     width: 100%;
+//     height: 100vh;
+//     overflow: hidden;
+//     pointer-events: none;
+//     background-color: ${({ backgroundColor }) => backgroundColor};
+//     z-index: -1;
+// `;
 
 
 export const Particle = styled.div.attrs<ParticleAttrs>(
@@ -77,8 +77,3 @@ export const Particle = styled.div.attrs<ParticleAttrs>(
 
   animation: ${float} linear infinite;
 `;
-
-  // width: ${({ size, variant }) =>
-  //   variant === "bubble" ? `${size}px` : variant === "stars" ? "10px" : "4px"};
-  // height: ${({ size, variant }) =>
-  //   variant === "bubble" ? `${size}px` : variant === "stars" ? "10px" : "4px"};

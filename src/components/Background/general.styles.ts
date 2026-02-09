@@ -5,7 +5,7 @@ export const Container = styled.div<{ backgroundColor?: string}>`
     left: 0;
     width: 100%;
     height: 100vh;
-    overflow: hidden;
+    
     pointer-events: none;
     background-color: ${({ backgroundColor }) => backgroundColor};
     z-index: -1;

@@ -1,30 +1,33 @@
 import styled, { keyframes } from "styled-components";
 
 
-const sparkleAnimation = keyframes`
-  animation: pulse 0.7s ease-in-out infinite;
-`;
-
-const delay100 = keyframes`
-  animation-delay: 0.1s;
-`;
-
-const delay200 = keyframes`
-  animation-delay: 0.2s;
+export const sparkleAnimation = keyframes`
+0%, 100% { opacity: 0; }
+25% { opacity: 0.5;}
+50% { opacity: 1; }
 `;
 
 
-// export const Container = styled.div<{ backgroundColor?: string}>`
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     width: 100%;
-//     height: 100vh;
-//     overflow: hidden;
-//     pointer-events: none;
-//     background-color: ${({ backgroundColor }) => backgroundColor};
-//     z-index: -999;
+
+//animation: `${sparkleAnimation} 0.8s ease-in-out infinite`;
+
+// .delay-100 { animation-delay: 0.1s; }
+// .delay-200 { animation-delay: 0.2s; }
+// .delay-300  { animation-delay: 0.3s;}
+
+
+// const delay100 = keyframes`
+//   animation-delay: 0.1s;
 // `;
+
+// const delay200 = keyframes`
+//   animation-delay: 0.2s;
+// `;
+
+
+
+
+
 
 
 export const GridContainer = styled.div<{
@@ -34,8 +37,7 @@ export const GridContainer = styled.div<{
     top: 0;
     width: 100%;
     height: fit-content;
-    pointer-events: none;
-    
+    z-index: 0;
     background: transparent;
     background-image: linear-gradient(to right, ${({ gridColor }) => gridColor} 1px, transparent 1px),
         linear-gradient(to bottom, ${({ gridColor }) => gridColor} 1px, transparent 1px);
@@ -71,45 +73,29 @@ export const NavbarContent = styled.div<{
     font-size: ${({ fontSize }) => `${fontSize}rem`};
 
     color: ${({ textColor }) => textColor};
+`;
+
+export const Sparkle = styled.span<{ 
+    width: number,
+    height: number,
+    background: string,
+    top: number,
+    left: number,
+    right: number,
+    rotate: number,
+    delay: number,
+}>`
+    position: absolute;
+    top: ${({ top }) => `${top}px`};
+    left: ${({ left }) => `${left}px`};
+    right: ${({ right }) => `${right}px`};
+    width: ${({ width }) => `${width}px`};
+    height: ${({ height }) => `${height}px`};
+    background: ${({ background }) => background};
+    transform: ${({rotate}) => `rotate(${rotate}deg)`};
 
     animation: ${sparkleAnimation} 0.7s ease-in-out infinite;
-    animation-delay: 0.1s;
-`
-
-
-
-
-// <div className="flex flex-row justify-center items-center gap-16 text-xl h-40">
-//                 {navlinks.map((link, index) => (
-//                     <div key={index} className="relative inline-block"
-//                         onMouseOver={() => setShowSparkles(index)} 
-//                         onMouseEnter={() => setShowSparkles(index)}
-//                         onMouseLeave={() => setShowSparkles(null)}
-//                         onFocus={() => setShowSparkles(index)}
-//                         onBlur={() => setShowSparkles(null)}>
-                        
-//                         <Link href={link.link} ref={el => textRefs.current[index] = el} className="hover:text-pink-600 relative z-10">{link.name}</Link>
-
-//                         {showSparkles === index && textWidths[index] && 
-//                             <span className="absolute top-0 inset-0 pointer-events-none">
-//                                 <span className='absolute bottom-0 rotate-45 z-50 w-1 h-1 bg-white sparkle-animation' style={{ left: `${textWidths[index] * 0.95}px` }}></span>
-//                                 <span className='absolute bottom-3 rotate-45 z-50 w-[0.2rem] h-[0.2rem] bg-white sparkle-animation delay-200' style={{ left: `${textWidths[index] * 1.1}px` }}></span>
-//                                 <span className='absolute bottom-1 -left-2 rotate-45 z-50 w-[0.3rem] h-[0.3rem] bg-white sparkle-animation delay-100'></span>
-//                                 <span className='absolute bottom-7 left-0 rotate-45 z-50 w-[0.1rem] h-[0.1rem] bg-white sparkle-animation delay-200'></span>
-                                
-//                                 <div className='absolute bottom-3 -left-7 sparkle-animation'>
-//                                     <span className='absolute bottom-2 left-3 z-50 w-[0.45rem] h-[1px] bg-white'></span>
-//                                     <span className='absolute bottom-1 left-[0.95rem] z-50 h-[0.5rem] w-[1px] bg-white'></span>
-//                                 </div>
-//                             </span>
-                           
-//                         }
-//                     </div>
-//                 ))}
-//             </div>
-
-// background-image: 
-    // linear-gradient(to right, ${({gridColor = "rgb(255,255,255)", opacity = 0.20}) => ${gridColor}${opacity}} 1px, transparent 1px),
-    // linear-gradient(to bottom, ${({gridColor = "rgb(255,255,255)", opacity = 0.20}) => ${gridColor}${opacity}} 1px, transparent 1px);
+    animation-delay: ${({delay}) => `${delay}s`};
+`;
 
 

@@ -1,5 +1,6 @@
 import { Container } from "../general.styles";
-import { Wrapper, Ghost, Zombie, Item1 } from "./Characters.styles";
+import { Wrapper, Ghost, Kawaii, Onion } from "./Characters.styles";
+import { Item1, Item2 } from "./Items.styles";
 
 
 type CharactersProps = {
@@ -11,7 +12,8 @@ type CharactersProps = {
     firstColorItem?: string;
     secondColorItem?: string;
     thirdColorItem?: string;
-    variant?: "ghost" | "zombie";
+    variant: "ghost" | "kawaii" | "onion";
+    itemVariant?: "knife" | "gun";
 }
 
 
@@ -21,10 +23,11 @@ export default function Characters({
     border = "#000",
     backgroundColor,
     showItem = false,
-    firstColorItem = "#fff",
-    secondColorItem = "#28643a",
+    firstColorItem = "#8f8f8f",
+    secondColorItem = "#153e6d",
     thirdColorItem = "#5d9741",
     variant,
+    itemVariant,
 }: CharactersProps) {
 
     const CHARACTER_HEIGHT = 76;
@@ -52,22 +55,32 @@ export default function Characters({
                     scale={scale}
                     delay={delay}
                     duration={duration}>
-                    
-                    
+
                     {variant === "ghost" ? 
-                    <Ghost color={color} border={border} />
-                    :  
-                    <Zombie color={color} border={border}/>
+                    <Ghost color={color} border={border} variant={variant}/>
+                    : variant === "kawaii" ?
+                    <Kawaii color={color} border={border} variant={variant}/>
+                    :
+                    <Onion color={color} border={border} variant={variant}/>
                     }
 
                     {showItem && (
+                        itemVariant === "knife" ? (
                         <Item1
                         firstColorItem={firstColorItem}
                         secondColorItem={secondColorItem}
                         thirdColorItem={thirdColorItem}
                         borderItem={border}
                         />
-                    )}
+                        ) : (
+                        <Item2
+                        firstColorItem={firstColorItem}
+                        secondColorItem={secondColorItem}
+                        thirdColorItem={thirdColorItem}
+                        borderItem={border}
+                        />
+                        ))
+                    }
                 </Wrapper>
             )})}
         </Container>

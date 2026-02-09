@@ -2,9 +2,9 @@ import styled, { keyframes } from "styled-components";
 
 
 const typingLoop = keyframes`
-  0%, 20%   { width: 0; }
+  0%, 20%  { width: 0; }
   60%, 80%  { width: 12ch; }
-  100%      { width: 0; }
+  100%  { width: 0; }
 `;
 
 const blinkingCursor = keyframes`

@@ -1,4 +1,5 @@
-import { Particle, Container } from "./ParticlesBackground.styles";
+import { Particle } from "./ParticlesBackground.styles";
+import { Container } from "../general.styles";
 
 export type ParticlesBackgroundProps = {
     count?: number;
@@ -21,7 +22,7 @@ export default function ParticlesBackground({
     const bubbleSizes = [12, 18, 24, 30, 36];
 
     return (
-    <Container backgroundColor={backgroundColor}>
+    <Container backgroundColor={backgroundColor} style={{ overflow: "hidden" }}>
       {Array.from({ length: count }).map((_, index) => {
         const left = (index / count) * 100;
         const delay = -random(0, 5);

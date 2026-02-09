@@ -1,6 +1,6 @@
 
-import { GridContainer, NavbarContent } from "./Navbar.styles";
-import { useState, useEffect, useRef } from "react";
+import { GridContainer, NavbarContent, Sparkle } from "./Navbar.styles";
+import { useState, useLayoutEffect, useRef } from "react";
 
 
 export interface NavLink {
@@ -27,15 +27,18 @@ export default function Navbar({
     fontSize,
     //backgroundColor,
 }: NavbarProps) {
-    const [showSparkles, setShowSparkles] = useState<number | null>(null);
+
+    const [showSparkles, setShowSparkles] = useState<number | null>(null); 
+    const textRefs = useRef<(HTMLAnchorElement | null)[]>([]);
     const [textWidths, setTextWidths] = useState<number[]>([]);
-    const refs = useRef<(HTMLAnchorElement | null)[]>([]);
 
-
-    useEffect(() => {
-        const widths = refs.current.map((el) => (el ? el.offsetWidth : 0));
+    //ottieni le larghezze dei testi dinamici dei link (pixels)
+    useLayoutEffect(() => {
+        const widths = textRefs.current.map(ref => ref?.offsetWidth || 0);
         setTextWidths(widths);
-    }, [links]);
+    }, []);
+
+
 
     return (
         <GridContainer gridColor={gridColor}>
@@ -43,77 +46,32 @@ export default function Navbar({
                 
                 {links.map((link, index) => (
                     <div key={index} style={{ display: 'inline-block', position: 'relative', overflow: 'visible' }}
-                        onMouseOver={() => setShowSparkles(index)}  
+                        onMouseOver={() => setShowSparkles(index)} 
                         onMouseEnter={() => setShowSparkles(index)}
-                        onMouseLeave={() => setShowSparkles(null)}
+                        onMouseLeave={() => setShowSparkles(index)}
                         onFocus={() => setShowSparkles(index)}
-                        onBlur={() => setShowSparkles(null)}>
+                        onBlur={() => setShowSparkles(null)}
+                        >
 
                         <a href={link.href} style={{ textDecoration: 'none', color: 'inherit', position: 'relative' }}
-                        ref={(el) : void => {refs.current[index] = el}}>
+                        ref={(el) => { textRefs.current[index] = el; }}>
                             {link.label}
                         </a>
 
-                        {showSparkles === index && textWidths[index] && (
-                            <span style={{ position: 'absolute', pointerEvents: 'none', inset: 0, bottom: 0 }}>
-                            <span className="sparkle-animation"
-                                style={{
-                                    position: "absolute",
-                                    width: "5.4px",
-                                    height: "5.4px",
-                                    background: "blue",
-                                    transform: "rotate(45deg)",
-                                    left: `${textWidths[index]}px`,
-                                    top: "-1px",
-                                }}
-                            />
-                            <span className="sparkle-animation delay-200"
-                                style={{
-                                    position: "absolute", 
-                                    width: "3.5px",
-                                    height: "3.5px",
-                                    background: "blue",
-                                    transform: "rotate(45deg)",
-                                    left: `${textWidths[index] + 10}px`,
-                                    top: "10px",
-                                }}
-                            />
-                            <span className="sparkle-animation delay-100"
-                                style={{
-                                    position: "absolute",
-                                    width: "4px",
-                                    height: "4px",
-                                    transform: "rotate(45deg)",
-                                    background: "blue",
-                                    left: `-${textWidths[index] - 10}px`,
-                                    top: 0
-                                }}
-                            />
-                            </span>
+                        {showSparkles === index && textWidths[index] && 
+                            <div style={{ pointerEvents: 'none' }}>
+                                <Sparkle width={5.4} height={5.4} background="#12b8af" rotate={45} top={-1} left={textWidths[index] + 4} right={0} delay={0.3}/>
+                                <Sparkle width={3} height={3} background="#0c8552" rotate={45} top={10} left={textWidths[index] + 12} right={0} delay={0} />
 
+                                <div style={{ position: 'absolute', top: "5px", right: `${textWidths[index] + 18}px` }}>
+                                    <Sparkle width={6} height={1} background="#10866d" rotate={0} top={12} left={8} right={0} delay={0}/>
+                                    <Sparkle width={1} height={6.5} background="#a4a71e" rotate={0} top={9} left={10} right={0} delay={0} />
+                                </div>
 
-                            // <span className="absolute bottom-0 inset-0 pointer-events-none">
-                            //     <span
-                            //     className="absolute bottom-0 rotate-45 z-50 w-1 h-1 bg-red-500 sparkle-animation"
-                            //     style={{ left: `${textWidths[index] * 0.95}px` }}
-                            //     ></span>
-                            //     <span
-                            //     className="absolute bottom-3 rotate-45 z-50 w-[0.2rem] h-[0.2rem] bg-red-500 sparkle-animation delay-200"
-                            //     style={{ left: `${textWidths[index] * 1.1}px` }}
-                            //     ></span>
-                            //     <span
-                            //     className="absolute bottom-1 -left-2 rotate-45 z-50 w-[0.3rem] h-[0.3rem] bg-red-500 sparkle-animation delay-100"
-                            //     ></span>
-                            //     <span
-                            //     className="absolute bottom-7 left-0 rotate-45 z-50 w-[0.1rem] h-[0.1rem] bg-red-500 sparkle-animation delay-200"
-                            //     ></span>
-
-                            //     <div className="absolute bottom-3 -left-7 sparkle-animation">
-                            //         <span className="absolute bottom-2 left-3 z-50 w-[0.45rem] h-[1px] bg-red-500"></span>
-                            //         <span className="absolute bottom-1 left-[0.95rem] z-50 h-[0.5rem] w-[1px] bg-red-500"></span>
-                            //     </div>
-                            // </span>
-                        )}
+                                <Sparkle width={1.5} height={1.5} background="#07439cff" rotate={45} top={21} right={textWidths[index]} left={0} delay={0.5}/>
+                                <Sparkle width={3.5} height={3.5} background="#b31f14" rotate={45} top={1} right={textWidths[index] + 900} left={0} delay={0.5}/>
+                            </div>
+                        }
                     </div>
                 ))}
             
