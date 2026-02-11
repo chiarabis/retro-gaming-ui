@@ -27,3 +27,6 @@
   - [Pinterest](https://it.pinterest.com/)
   - [Landing Love](https://www.landing.love/style/retro/)
   - [Really Good Designs](https://reallygooddesigns.com/retro-website-designs/)
+  
+---
+### Portfolio here (soon)
