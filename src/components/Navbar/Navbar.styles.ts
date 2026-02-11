@@ -2,39 +2,15 @@ import styled, { keyframes } from "styled-components";
 
 
 export const sparkleAnimation = keyframes`
-0%, 100% { opacity: 0; }
-25% { opacity: 0.5;}
-50% { opacity: 1; }
+    0%, 100% { opacity: 0; }
+    25% { opacity: 0.5;}
+    50% { opacity: 1; }
 `;
-
-
-
-//animation: `${sparkleAnimation} 0.8s ease-in-out infinite`;
-
-// .delay-100 { animation-delay: 0.1s; }
-// .delay-200 { animation-delay: 0.2s; }
-// .delay-300  { animation-delay: 0.3s;}
-
-
-// const delay100 = keyframes`
-//   animation-delay: 0.1s;
-// `;
-
-// const delay200 = keyframes`
-//   animation-delay: 0.2s;
-// `;
-
-
-
-
-
 
 
 export const GridContainer = styled.div<{
     gridColor: string;
 }>`
-    position: absolute;
-    top: 0;
     width: 100%;
     height: fit-content;
     z-index: 0;
@@ -61,6 +37,7 @@ export const NavbarContent = styled.div<{
     gap?: number;
     fontSize?: number;
 }>`
+    position: relative;
     width: 100%;
     height: 100%;
     display: flex;
@@ -73,6 +50,16 @@ export const NavbarContent = styled.div<{
     font-size: ${({ fontSize }) => `${fontSize}rem`};
 
     color: ${({ textColor }) => textColor};
+`;
+
+export const Link = styled.a`
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    
+    &:hover {
+        text-shadow: 2px 3px 0px #ec99c4;
+    }
 `;
 
 export const Sparkle = styled.span<{ 

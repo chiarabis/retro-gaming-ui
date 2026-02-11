@@ -41,6 +41,7 @@ const meta: Meta<typeof CharactersProps> = {
             if: { arg: "showItem", eq: true }
         },
         backgroundColor: { control: "color", name: "Background Color" },
+        overflow: { control: "radio", options: ["hidden", "scroll"], name: "Overflow Y" },
     }
 }
 
@@ -59,6 +60,7 @@ export const Default: Story = {
         secondColorItem: "#153e6d",
         thirdColorItem: "#5d9741",
         backgroundColor: "#7999eb",
+        overflow: "hidden",
     },
     render: (args) => (
         <Characters {...args} />

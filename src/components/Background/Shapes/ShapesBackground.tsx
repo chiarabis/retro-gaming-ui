@@ -6,6 +6,7 @@ export type ShapesBackgroundProps = {
     color?: string;
     backgroundColor?: string;
     variant?: "star" | "heart";
+    overflow: string;
 }
 
 
@@ -14,13 +15,14 @@ export default function ShapesBackground({
     color = "#F8FF2A",
     backgroundColor,
     variant = "star",
+    overflow,
 }: ShapesBackgroundProps) {
 
     const random = (min: number, max: number) => Math.random() * (max - min) + min;
 
     return (
         <>
-        <Container backgroundColor={backgroundColor}>
+        <Container backgroundColor={backgroundColor} overflow={overflow}>
           {Array.from({ length: count }).map((_, index) => {
             const delay = -random(0, 5);
             const duration = random(6, 10);

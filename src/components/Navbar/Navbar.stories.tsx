@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import Navbar from "./Navbar";
-// import userEvent from "@testing-library/user-event";
-// import { within } from "@testing-library/dom";
 
 const links = [
   { label: "Home", href: "/" },
@@ -18,7 +16,8 @@ const meta: Meta<typeof Navbar> = {
     textColor: { control: "color", name: "Text Color" },
     gap: { control: "number", name: "Gap" },
     fontSize: { control: "number", name: "Font Size" },
-    //backgroundColor: { control: "color", name: "Background Color" },
+    backgroundColor: { control: "color", name: "Background Color" },
+    position: { table: { disable: true } },
   },
 };
 
@@ -27,12 +26,13 @@ type Story = StoryObj<typeof Navbar>;
 
 export const Default: Story = {
   args: {
-    gridColor: "#a4d4d4",
+    gridColor: "#654b7e",
     links: links,
-    textColor: "#06a556",
+    textColor: "#13214e",
     gap: 3,
     fontSize: 1.3,
-    //backgroundColor: "#7c8fa0",
+    backgroundColor: "#d79fe6",
+    position: "absolute",
   },
   render: (args) => (
     <Navbar {...args} />

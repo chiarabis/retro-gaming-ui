@@ -76,4 +76,5 @@ export const Particle = styled.div.attrs<ParticleAttrs>(
                  ${getAlpha(variant)})`};
 
   animation: ${float} linear infinite;
+
 `;

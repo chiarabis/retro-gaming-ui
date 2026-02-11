@@ -70,4 +70,3 @@ export const Typing = styled.span`
   border-right: 2px solid rgba(255,255,255,0.75);
   animation: ${typingLoop} 6s steps(12) infinite, ${blinkingCursor} 500ms step-end infinite;
 `;
-// width: 11.5ch;

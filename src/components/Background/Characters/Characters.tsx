@@ -14,6 +14,7 @@ type CharactersProps = {
     thirdColorItem?: string;
     variant: "ghost" | "kawaii" | "onion";
     itemVariant?: "knife" | "gun";
+    overflow: string;
 }
 
 
@@ -28,6 +29,7 @@ export default function Characters({
     thirdColorItem = "#5d9741",
     variant,
     itemVariant,
+    overflow,
 }: CharactersProps) {
 
     const CHARACTER_HEIGHT = 76;
@@ -38,7 +40,7 @@ export default function Characters({
 
 
     return (
-        <Container backgroundColor={backgroundColor}>
+        <Container backgroundColor={backgroundColor} overflow={overflow}>
             {Array.from({ length: actualCount }).map((_, index) => {
                 const delay = -random(0, 5);
                 const duration = random(6, 10);

@@ -19,6 +19,7 @@ const meta: Meta<typeof ShapesBackgroundProps> = {
     //   if: { arg: "variant", eq: "star" }
     // },
     backgroundColor: { control: "color", name: "Background Color" },
+    overflow: { control: "radio", options: ["hidden", "scroll"], name: "Overflow Y" },
     variant: { control: "radio", options: ["star", "heart"], name: "Variant" },
   },
 };
@@ -31,6 +32,7 @@ export const Default: Story = {
     count: 15,
     color: "#F8FF2A",
     backgroundColor: "#7999eb",
+    overflow: "hidden",
     variant: "star",
   },
   render: (args) => (

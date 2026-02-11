@@ -9,6 +9,7 @@ export type ParticlesBackgroundProps = {
     colors?: string[];
     backgroundColor?: string;
     variant?: "pois" | "bubble";
+    overflow: string;
 }
 
 
@@ -17,12 +18,13 @@ export default function ParticlesBackground({
     colors = ["#00ffff", "#e60076", "#F8FF2A"],
     backgroundColor = "transparent",
     variant,
+    overflow,
 }: ParticlesBackgroundProps) {
     const random = (min: number, max: number) => Math.random() * (max - min) + min;
     const bubbleSizes = [12, 18, 24, 30, 36];
 
     return (
-    <Container backgroundColor={backgroundColor} style={{ overflow: "hidden" }}>
+    <Container backgroundColor={backgroundColor} overflow={overflow}>
       {Array.from({ length: count }).map((_, index) => {
         const left = (index / count) * 100;
         const delay = -random(0, 5);

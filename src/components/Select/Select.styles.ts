@@ -23,18 +23,18 @@ export const SelectButton = styled.button<{
   flex-direction: row;
   gap: 0.75rem;
   padding: 0.25rem 0.75rem;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   width: 100%;
-  cursor: default;
+  cursor: pointer;
   font-family: "VT323", monospace;
   color: ${({ fontColor }) => fontColor};
-  border: 2px solid ${({ borderColor }) => borderColor};
+  border: 3px solid ${({ borderColor }) => borderColor};
   background-color: ${({ bgColor }) => bgColor};
   box-shadow: 4px 4px 0 ${({ borderColor }) => borderColor};
   transition: transform 0.1s, box-shadow 0.1s;
 
   &:hover {
-    transform: scale(0.98) translate(3px, 1px);
+    transform: translate(0, 2px);
     box-shadow: 2px 2px 0 ${({ borderColor }) => borderColor};
   }
 `;
@@ -44,8 +44,8 @@ export const OptionsContainer = styled.div<{ fontColor: string}>`
   top: 110%;
   right: 0;
   width: 100%;
-  border: 1px solid ${({ fontColor }) => fontColor};
-  background-color: white;
+  border: 3px solid ${({ fontColor }) => fontColor};
+  background-color: #fffdfd;
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
@@ -64,6 +64,7 @@ export const Option = styled.p<{ optionColor: string }>`
   display: flex;
   flex-direction: column;
   text-wrap: wrap;
+  text-transform: capitalize;
 
   &:hover {
     background-color: ${({ optionColor }) => optionColor};

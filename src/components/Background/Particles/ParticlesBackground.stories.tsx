@@ -19,6 +19,7 @@ const meta: Meta<ParticlesBackgroundProps> = {
   argTypes: {
     count: { control: "number", name: "Count" },
     backgroundColor: { control: "color", name: "Background Color" },
+    overflow: { control: "radio", options: ["hidden", "scroll"], name: "Overflow Y" },
     color1: { control: "color", name: "Color 1" },
     color2: { control: "color", name: "Color 2" },
     color3: { control: "color", name: "Color 3" },
@@ -35,6 +36,7 @@ export const Default: Story = {
   args: {
     count: 15,
     backgroundColor: "#000",
+    overflow: "hidden",
     color1: "#00ffff",
     color2: "#e60076",
     color3: "#F8FF2A",
