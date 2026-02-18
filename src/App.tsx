@@ -1,55 +1,79 @@
 
-import ParticlesBackground from "./components/Background/Particles/ParticlesBackground";
+// import ParticlesBackground from "./components/Background/Particles/ParticlesBackground";
 import ShapesBackground from "./components/Background/Shapes/ShapesBackground";
-import Button from "./components/Button/Button";
+import TypingText from "./components/Text/TypingText";
 import Navbar from "./components/Navbar/Navbar";
 import Select from "./components/Select/Select";
-import Box from "./components/Box/Box";
-import CardWrapper from "./components/Card/CardWrapper";
+import Footer from "./components/Footer/Footer";
 import Home from "./components/Home/Home";
+import Loader from "./components/Loader/Loader";
+import { useState, useEffect } from "react";
 
 function App() {
 
+/* simulazione loader caricamento pagina */
+const [loading, setLoading] = useState(true);
 
+useEffect(() => {
+  const timer = setTimeout(() => {
+    setLoading(false);
+  }, 5000);
+  return () => clearTimeout(timer);
+}, []);
 
   return (
     <>
-      <div style={{ 
-        backgroundColor: "#94a9dd",  
-        fontFamily: "vt323", 
-        height: "100%",
-      }}>
+      {loading ? (
+        <div className={`loader-wrapper`}>
+          <Loader 
+            border="#000"
+            firstColor="#ce73a2" 
+            secondColor="#f1b8d5"
+            cloudColor="#ffffff"
+            treeColor="#24832c"
+          />
+        </div>
 
-        
-        {/* <ParticlesBackground 
-          count={20} 
-          colors={["#00ffff", "#e60076", "#F8FF2A"]}
-          variant="pois"
-          backgroundColor="transparent"
-          overflow="scroll"
-        />
-       */}
-        <ShapesBackground 
-          count={15}
-          color="#F8FF2A"
-          backgroundColor="#000"
-          variant="star"
-          overflow="scroll"
-        />
-      
-      
+        ) : (
 
-      
-        <main style={{ 
-          zIndex: 1,  display: "flex", 
-          flexDirection: "column", 
-          alignItems: "center", 
-          justifyContent: "center",
+        <div style={{ 
+          backgroundColor: "#94a9dd",  
+          fontFamily: "vt323", 
           height: "100%",
-          width: "100%", 
-          gap: "2.5rem",
-          position: "relative",
-          }}>
+          minHeight: "100vh",
+          }}
+          className={`content`}>
+            
+          {/* <ParticlesBackground 
+            count={20} 
+            colors={["#00ffff", "#e60076", "#F8FF2A"]}
+            variant="pois"
+            backgroundColor="transparent"
+            overflow="scroll"
+          />
+          */}
+          <ShapesBackground 
+            count={15}
+            color="#F8FF2A"
+            backgroundColor="transparent"
+            variant="star"
+            overflow="scroll"
+          />
+      
+      
+
+      
+            <main style={{ 
+              zIndex: 1,  display: "flex", 
+              flexDirection: "column", 
+              alignItems: "center", 
+              justifyContent: "center",
+              height: "100%",
+              width: "100%", 
+              gap: "2.5rem",
+              position: "relative",
+              }}>
+
               <Navbar
                 gridColor="#96cce7"
                 gap={6}
@@ -62,25 +86,16 @@ function App() {
                 textColor="#0f172b"
                 backgroundColor="transparent"
               />
-
+ 
               <Home/>
 
-              <Box 
-                content="Retro gaming UI is thought for nostalgic guys who love pixel art, retro games, vintage vibes, Y2K and 8-bit aesthetics."
-                primaryColor="#0f172b"
-                secondaryColor="#515969"
-                backgroundColor="#fff"
-              />
-
-              {/* <CardWrapper/> */}
               
 
-              <Button
-                titleButton="► Click Me!"
-                firstColor="#0f172b"
-                secondColor="#F8FF2A"
-                thirdColor="#e60076"
-                backgroundColor="#F9A8D4"
+              <TypingText
+                title="Click me!"
+                firstColor="#3b65cfff"
+                cursorSize={10}
+                fontSize={24}
               />
 
               <Select
@@ -92,9 +107,10 @@ function App() {
                 placeholder = "Choose Something"
               />
 
-            
-        </main>
-      </div>
+              <Footer/>
+            </main>
+          </div>
+        )}
     </>
   )
 }

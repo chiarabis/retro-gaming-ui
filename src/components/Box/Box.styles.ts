@@ -1,22 +1,17 @@
 import styled from "styled-components";
-//import React from "react";
+
 
 type BoxProps = {
-    primaryColor?: string;
-    secondaryColor?: string;
-    backgroundColor?: string;
+    firstColor: string;
+    secondColor: string;
 };
 
 export const BoxWrapper = styled.div<BoxProps>`
-    padding: 1.25rem;
-    width: fit-content;
-    height: auto;
-    display: flex;
-    gap: 0.5rem;
-    border: 4px solid ${({ primaryColor }) => primaryColor};
-    background-color: ${({ backgroundColor }) => backgroundColor};
-
-  box-shadow:
-    4px 4px 0 ${({ secondaryColor }) => secondaryColor},
-    8px 8px 0 ${({ primaryColor }) => primaryColor};
+  width: fit-content;
+  height: 100%;
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  box-shadow: -3px -3px 0 0 ${props => props.firstColor}, 2px 2px 0 1px ${props => props.secondColor};
 `;
+
+ //box-shadow: -3px -3px 0 0 #f7b7d8, 2px 2px 0 1px #ce73a2;

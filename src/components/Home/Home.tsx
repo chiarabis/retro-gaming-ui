@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import Modal from "../Modal/Modal";
 import { modals } from '../Modal/Modal';
 
@@ -6,7 +6,8 @@ import { modals } from '../Modal/Modal';
 const folders = [
     { name: 'About', icon: '/rxrsxrta.png' },
     { name: 'Pokemon cards', icon: '/rxrsxrta.png' },
-    { name: 'Counter', icon: '/rxrsxrta.png' },
+    { name: 'Music Player', icon: '/rxrsxrta.png' },
+    { name: 'Pixel Icons', icon: '/rxrsxrta.png' },
     { name: 'Contact', icon: '/rxrsxrta.png' },
 ]
 
@@ -19,16 +20,15 @@ export default function Home() {
     const ref = useRef<HTMLDivElement | null>(null);
 
     //stati che permettono UNA modale alla volta
-    const [openFolder, setOpenFolder] = useState<string | null>(null);
-    const [openModal, setOpenModal] = useState<boolean>(false);
+    // const [openFolder, setOpenFolder] = useState<string | null>(null);
+    // const [openModal, setOpenModal] = useState<boolean>(false);
 
     //stati che permettono MULTIPLE modali contemporanee (tipo finestre desktop)
     const [openModals, setOpenModals] = useState<string[]>([]);
 
 
     
-const [hoveredFolder, setHoveredFolder] = useState<string | null>(null);
-
+    const [hoveredFolder, setHoveredFolder] = useState<string | null>(null);
 
     // const handleFolderClick = (folderName: string) => {
     //     if (openFolder === folderName) {
@@ -64,16 +64,21 @@ const [hoveredFolder, setHoveredFolder] = useState<string | null>(null);
     //     return () => document.removeEventListener("mousedown", handleClickOutside);
     // }, []);
 
-    const closeWindow = () => {
-        setOpenFolder(null);
-        setOpenModal(false);
-    }
+    // const closeWindow = () => {
+    //     setOpenFolder(null);
+    //     setOpenModal(false);
+    // }
+
+    const closeWindow = (name: string) => {
+        setOpenModals(prev => prev.filter(n => n !== name));
+    };
+
     
 
     return (
         <>
             <div style={{ width: '100%', display: 'flex', justifyContent: 'start', height: '100%', alignItems: 'center' }}>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', placeItems: "start", width: '50%', margin: '0 3rem' }}>
+                <div style={{ display: 'grid', gap: '1rem', gridTemplateColumns: 'repeat(4, 1fr)', placeItems: "start", width: '50%', margin: '0 3rem' }}>
 
                 {folders.map((folder, index) => (
                     <div
@@ -113,9 +118,7 @@ const [hoveredFolder, setHoveredFolder] = useState<string | null>(null);
                 return (
                     <Modal
                     key={folderName}
-                    closeWindow={() =>
-                        setOpenModals(prev => prev.filter(name => name !== folderName))
-                    }
+                    closeWindow={() => closeWindow(folderName)}
                     >
                     {modalData.content}
                     </Modal>

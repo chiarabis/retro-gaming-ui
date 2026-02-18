@@ -49,7 +49,7 @@ export default function Navbar({
             <NavbarContent textColor={textColor} gap={gap} fontSize={fontSize}>
                 
                 {links.map((link, index) => (
-                    <div key={index} style={{ display: 'inline-block', position: 'relative', overflow: 'visible' }}
+                    <div key={index} style={{ display: 'inline-block', position: 'relative', overflow: 'visible', cursor: 'pointer' }}
                         onMouseOver={() => setShowSparkles(index)} 
                         onMouseEnter={() => setShowSparkles(index)}
                         onMouseLeave={() => setShowSparkles(null)}

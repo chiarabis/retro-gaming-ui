@@ -121,7 +121,7 @@ export default function Card({pokemon, selectedGender}: CardProps) {
           fontSize: "1.5rem",
           fontWeight: "bold",
           textAlign: "center",
-          marginBottom: "0.5rem",
+          margin: "0.5rem 0",
           textTransform: "capitalize",
           color: `${selectedGender === "female" ? "#f059a7" : selectedGender === "male" ? "#309dd3" : "#0f172b"}`,
           textShadow: `2px 3px 0px ${selectedGender === "female" ? "#96cce7" : selectedGender === "male" ? "#f796c8" : "#b9b9b9"}`,

@@ -1,40 +1,17 @@
-import { ButtonWrap, Typing } from "./Button.styles";
 
-type ButtonProps = {
-  titleButton: string;
-  firstColor?: string;
-  secondColor?: string;
-  thirdColor?: string;
-  backgroundColor?: string;
-  border?: "solid" | "dashed" | "dotted" ;
+import { ButtonWrapper } from './Button.styles'
 
-};
+export default function Button({ title }: { title: string }) {
+    
+    const handleClick = () => {
+        console.log("Button clicked");
+    }
 
-export default function Button({
-  titleButton,
-  firstColor,
-  secondColor,
-  thirdColor,
-  backgroundColor,
-  border,
-}: ButtonProps) {
-  const widthChars = titleButton.length;
-  const handleButtonClick = () => {
-    alert("Button clicked");
-  };
-
-  return (
-    <ButtonWrap 
-    firstColor={firstColor} 
-    secondColor={secondColor} 
-    thirdColor={thirdColor} 
-    backgroundColor={backgroundColor} 
-    border={border as "solid" | "dashed" | "dotted" }
-    widthChars={widthChars}
-    >
-      <button onClick={handleButtonClick}>
-        <Typing>{titleButton}</Typing>
-      </button>
-    </ButtonWrap>
-  );
+    return (
+        <ButtonWrapper 
+        firstColor="#f1b8d5" 
+        secondColor="#ce73a2">
+            <button onClick={() => {handleClick()}}>{title}</button>
+        </ButtonWrapper>
+    )
 }

@@ -8,11 +8,6 @@ const meta: Meta<typeof Loader> = {
         border: { control: "color", name: "Border Color" },
         firstColor: { control: "color", name: "First Color" },
         secondColor: { control: "color", name: "Second Color" },
-        variant: {
-            name: "Variant",
-            control: "radio",
-            options: ["dino", "pacman"],
-        },
     },
 };
 
@@ -24,7 +19,6 @@ export const Default: Story = {
         border: "#000",
         firstColor: "#35978f",
         secondColor: "#df1e1e",
-        variant: "dino",
     },
     render: (args) => <Loader {...args} />,
 };

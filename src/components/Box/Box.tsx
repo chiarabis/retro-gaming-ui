@@ -1,26 +1,19 @@
 import { BoxWrapper } from "./Box.styles";
-import React from "react";
 
 type BoxProps = {
-    content?: React.ReactNode;
-    primaryColor?: string;
-    secondaryColor?: string;
-    backgroundColor?: string;
-}
+    children: React.ReactNode;
+    firstColor?: string;
+    secondColor?: string;
+};
 
-export default function Box ({ 
-    content,
-    primaryColor,
-    secondaryColor,
-    backgroundColor
+export default function Box({
+    children,
+    firstColor = "#f7b7d8",
+    secondColor = "#ce73a2"
 }: BoxProps) {
     return (
-        <BoxWrapper 
-            primaryColor={primaryColor}
-            secondaryColor={secondaryColor}
-            backgroundColor={backgroundColor}
-        >
-            {content}
+        <BoxWrapper firstColor={firstColor} secondColor={secondColor}>
+            {children}
         </BoxWrapper>
     )
 }

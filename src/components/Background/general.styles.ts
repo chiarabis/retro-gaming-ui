@@ -1,4 +1,5 @@
 import styled from "styled-components";
+
 export const Container = styled.div<{ backgroundColor?: string, overflow?: string, position?: string}>`
     position: ${({ position }) => position};
     top: 0;
@@ -7,7 +8,6 @@ export const Container = styled.div<{ backgroundColor?: string, overflow?: strin
     height: 100%;
     overflow-y: ${({ overflow }) => overflow};
     
-    pointer-events: none;
     background-color: ${({ backgroundColor }) => backgroundColor};
     //z-index: -1;
 `;
