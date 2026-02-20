@@ -67,7 +67,7 @@ type LoaderAttrs = {
 
 export const Dino = styled.div<LoaderAttrs>`
   position: absolute;
-  top: 45%;
+  top: 45.7%;
   left: 45%;
   height: 4px;
   width: 4px;
@@ -190,7 +190,7 @@ type TreeProps = {
 
 export const Tree1 = styled.div<TreeProps>`
   position: absolute;
-  top: 47.5%;
+  top: 48%;
   left: 10%;
   transform: translate(-50%, -50%);
   height: 4px;
@@ -216,7 +216,7 @@ export const Tree1 = styled.div<TreeProps>`
 
 export const Tree2 = styled.div<TreeProps>`
   position: absolute;
-  top: 46.5%;
+  top: 46.7%;
   left: 70%;
   transform: translate(-50%, -50%);
   height: 4px;
@@ -253,7 +253,7 @@ export const Tree2 = styled.div<TreeProps>`
 
 export const Tree3 = styled.div<TreeProps>`
   position: absolute;
-  top: 46.5%;
+  top: 46.7%;
   left: 78%;
   transform: translate(-50%, -50%);
   height: 4px;
@@ -283,7 +283,7 @@ type CloudProps = {
 
 export const Cloud1 = styled.div<CloudProps>`
   position: absolute;
-  top: 40%;
+  top: 30%;
   left: 20%;
   height: 4px;
   width: 4px;
@@ -306,7 +306,7 @@ export const Cloud1 = styled.div<CloudProps>`
 
 export const Cloud2 = styled.div<CloudProps>`
   position: absolute;
-  top: 40%;
+  top: 36%;
   left: 65%;
   height: 4px;
   width: 4px;
@@ -337,22 +337,22 @@ export const Cloud2 = styled.div<CloudProps>`
 
 export const Cloud3 = styled.div<CloudProps>`
   position: absolute;
-  top: 41%;
-  left: 24%;
+  top: 32%;
+  left: 25%;
   height: 4px;
   width: 4px;
 
   box-shadow: 52px 32px 0 0 ${({cloudColor}) => cloudColor}, 56px 32px 0 0 ${({cloudColor}) => cloudColor}, 44px 36px 0 0 ${({cloudColor}) => cloudColor}, 
   48px 36px 0 0 ${({cloudColor}) => cloudColor}, 52px 36px 0 0 ${({cloudColor}) => cloudColor}, 56px 36px 0 0 ${({cloudColor}) => cloudColor}, 
-  60px 36px 0 0 ${({cloudColor}) => cloudColor}, 36px 40px 0 0 rgba(0, 0, 0, 1), 40px 40px 0 0 rgba(0, 0, 0, 1), 44px 40px 0 0 rgba(0, 0, 0, 1), 
-  48px 40px 0 0 rgba(0, 0, 0, 1), 52px 40px 0 0 rgba(0, 0, 0, 1), 56px 40px 0 0 rgba(0, 0, 0, 1), 60px 40px 0 0 rgba(0, 0, 0, 1), 
-  64px 40px 0 0 rgba(0, 0, 0, 1), 28px 44px 0 0 rgba(0, 0, 0, 1), 32px 44px 0 0 rgba(0, 0, 0, 1), 36px 44px 0 0 rgba(0, 0, 0, 1), 
-  40px 44px 0 0 rgba(0, 0, 0, 1), 44px 44px 0 0 rgba(0, 0, 0, 1), 48px 44px 0 0 rgba(0, 0, 0, 1), 52px 44px 0 0 rgba(0, 0, 0, 1), 
-  56px 44px 0 0 rgba(0, 0, 0, 1), 60px 44px 0 0 rgba(0, 0, 0, 1), 64px 44px 0 0 rgba(0, 0, 0, 1), 68px 44px 0 0 rgba(0, 0, 0, 1), 
-  20px 48px 0 0 rgba(0, 0, 0, 1), 24px 48px 0 0 rgba(0, 0, 0, 1), 28px 48px 0 0 rgba(0, 0, 0, 1), 32px 48px 0 0 rgba(0, 0, 0, 1), 
-  36px 48px 0 0 rgba(0, 0, 0, 1), 40px 48px 0 0 rgba(0, 0, 0, 1), 44px 48px 0 0 rgba(0, 0, 0, 1), 48px 48px 0 0 rgba(0, 0, 0, 1), 
-  52px 48px 0 0 rgba(0, 0, 0, 1), 56px 48px 0 0 rgba(0, 0, 0, 1), 60px 48px 0 0 rgba(0, 0, 0, 1), 64px 48px 0 0 rgba(0, 0, 0, 1), 
-  68px 48px 0 0 rgba(0, 0, 0, 1), 72px 48px 0 0 rgba(0, 0, 0, 1);
+  60px 36px 0 0 ${({cloudColor}) => cloudColor}, 36px 40px 0 0 ${({cloudColor}) => cloudColor}, 40px 40px 0 0 ${({cloudColor}) => cloudColor}, 44px 40px 0 0 ${({cloudColor}) => cloudColor}, 
+  48px 40px 0 0 ${({cloudColor}) => cloudColor}, 52px 40px 0 0 ${({cloudColor}) => cloudColor}, 56px 40px 0 0 ${({cloudColor}) => cloudColor}, 60px 40px 0 0 ${({cloudColor}) => cloudColor}, 
+  64px 40px 0 0 ${({cloudColor}) => cloudColor}, 28px 44px 0 0 ${({cloudColor}) => cloudColor}, 32px 44px 0 0 ${({cloudColor}) => cloudColor}, 36px 44px 0 0 ${({cloudColor}) => cloudColor}, 
+  40px 44px 0 0 ${({cloudColor}) => cloudColor}, 44px 44px 0 0 ${({cloudColor}) => cloudColor}, 48px 44px 0 0 ${({cloudColor}) => cloudColor}, 52px 44px 0 0 ${({cloudColor}) => cloudColor}, 
+  56px 44px 0 0 ${({cloudColor}) => cloudColor}, 60px 44px 0 0 ${({cloudColor}) => cloudColor}, 64px 44px 0 0 ${({cloudColor}) => cloudColor}, 68px 44px 0 0 ${({cloudColor}) => cloudColor}, 
+  20px 48px 0 0 ${({cloudColor}) => cloudColor}, 24px 48px 0 0 ${({cloudColor}) => cloudColor}, 28px 48px 0 0 ${({cloudColor}) => cloudColor}, 32px 48px 0 0 ${({cloudColor}) => cloudColor}, 
+  36px 48px 0 0 ${({cloudColor}) => cloudColor}, 40px 48px 0 0 ${({cloudColor}) => cloudColor}, 44px 48px 0 0 ${({cloudColor}) => cloudColor}, 48px 48px 0 0 ${({cloudColor}) => cloudColor}, 
+  52px 48px 0 0 ${({cloudColor}) => cloudColor}, 56px 48px 0 0 ${({cloudColor}) => cloudColor}, 60px 48px 0 0 ${({cloudColor}) => cloudColor}, 64px 48px 0 0 ${({cloudColor}) => cloudColor}, 
+  68px 48px 0 0 ${({cloudColor}) => cloudColor}, 72px 48px 0 0 ${({cloudColor}) => cloudColor};
 
   animation: ${cloud2} 2s infinite;
   -webkit-animation: ${cloud2} 2s infinite;

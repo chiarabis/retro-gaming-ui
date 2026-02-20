@@ -10,7 +10,7 @@ export const ButtonWrapper = styled.div<ButtonProps>`
   width: fit-content;
   height: 100%;
   padding: 0.5rem;
-  box-shadow: -3px -3px 0 0 ${props => props.firstColor}, 2px 2px 0 1px ${props => props.secondColor};
+  box-shadow: -3px -3px 0 0 ${props => props.firstColor}, 3px 3px 0 1px ${props => props.secondColor};
     
   button {
     margin: 0; 

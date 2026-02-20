@@ -1,6 +1,10 @@
 import { useState, useRef } from "react";
 import Modal from "../Modal/Modal";
 import { modals } from '../Modal/Modal';
+import CatWindow from "../CatWindow/CatWindow";
+import Footer from "../Footer/Footer";
+import Navbar from "../Navbar/Navbar";
+
 
 
 const folders = [
@@ -8,6 +12,7 @@ const folders = [
     { name: 'Pokemon cards', icon: '/rxrsxrta.png' },
     { name: 'Music Player', icon: '/rxrsxrta.png' },
     { name: 'Pixel Icons', icon: '/rxrsxrta.png' },
+    // { name: 'Storybook', icon: '/rxrsxrta.png' },
     { name: 'Contact', icon: '/rxrsxrta.png' },
 ]
 
@@ -16,8 +21,10 @@ const folders = [
 
 
 
+
 export default function Home() {
     const ref = useRef<HTMLDivElement | null>(null);
+
 
     //stati che permettono UNA modale alla volta
     // const [openFolder, setOpenFolder] = useState<string | null>(null);
@@ -44,9 +51,9 @@ export default function Home() {
     const handleFolderClick = (folderName: string) => {
         setOpenModals(prev => {
             if (prev.includes(folderName)) {
-            return prev.filter(name => name !== folderName);
+                return prev.filter(name => name !== folderName);
             } else {
-            return [...prev, folderName];
+                return [...prev, folderName];
             }
         });
     };
@@ -73,17 +80,41 @@ export default function Home() {
         setOpenModals(prev => prev.filter(n => n !== name));
     };
 
+
+    const handleOpenModal = (name: string) => {
+        setOpenModals(prev => {
+            if (prev.includes(name)) {
+                return prev.filter(n => n !== name);
+            } else {
+                return [...prev, name];
+            }
+        });
+    };
+
     
 
     return (
         <>
-            <div style={{ width: '100%', display: 'flex', justifyContent: 'start', height: '100%', alignItems: 'center' }}>
-                <div style={{ display: 'grid', gap: '1rem', gridTemplateColumns: 'repeat(4, 1fr)', placeItems: "start", width: '50%', margin: '0 3rem' }}>
+            <Navbar
+                gridColor="rgba(255, 255, 255, 0.5)"
+                gap={6}
+                fontSize={2}
+                links={[
+                    { name: "Home", href: "#" },
+                    { name: "Contact", href: "" },
+                ]}
+                textColor="#0f172b"
+                backgroundColor="transparent"
+                justify="center"
+            />
+
+            <div style={{ width: '100%', height: '100%'}}>
+                <div style={{ display: 'grid', gap: '3rem', gridTemplateColumns: 'repeat(3, 1fr)', placeItems: "start", width: '50%', margin: '0 3rem' }}>
 
                 {folders.map((folder, index) => (
                     <div
                         key={index}
-                        style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', cursor: 'pointer' }}
+                        style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', cursor: 'pointer' }}
                         onClick={() => handleFolderClick(folder.name)}
                         onMouseEnter={() => setHoveredFolder(folder.name)}
                         onMouseLeave={() => setHoveredFolder(null)}
@@ -96,12 +127,15 @@ export default function Home() {
                         alt={folder.name}
                         />
 
-                        <p style={{ fontFamily: 'vt323', margin: 0 }}>{folder.name}</p>
+                        <p style={{ fontFamily: 'VT323', margin: 0 }}>{folder.name}</p>
                     </div>
                 ))}
+
                 </div>
 
             </div>
+
+            
             
             {/* {openModal && openFolder && (
                 <Modal closeWindow={closeWindow}>
@@ -119,12 +153,16 @@ export default function Home() {
                     <Modal
                     key={folderName}
                     closeWindow={() => closeWindow(folderName)}
+                    modalName={folderName}
                     >
                     {modalData.content}
                     </Modal>
                 );
             })}
 
+
+
+            <Footer handleOpenModal={handleOpenModal}/>
 
         </>
     );

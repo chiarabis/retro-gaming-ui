@@ -6,6 +6,7 @@ type TextProps = {
   firstColor?: string;
   cursorSize: number;
   fontSize?: number;
+  extraClass?: string;
 };
 
 export default function TypingText({
@@ -13,6 +14,7 @@ export default function TypingText({
   firstColor,
   cursorSize,
   fontSize,
+  extraClass,
 }: TextProps) {
 
 const widthText = title.length + 1;
@@ -21,12 +23,12 @@ const widthText = title.length + 1;
 
   return (
     <Wrap 
-    firstColor={firstColor} 
     widthChars={widthText}
     fontSize={fontSize}
+    extraClass={extraClass || ""}
     >
       
-      <Typing widthChars={widthText} cursorSize={cursorSize}>{title}</Typing>
+      <Typing firstColor={firstColor} widthChars={widthText} cursorSize={cursorSize}>{title}</Typing>
       
     </Wrap>
   );

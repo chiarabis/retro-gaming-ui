@@ -1,5 +1,47 @@
 import { useState, useRef, useEffect } from "react";
 
+// const gif = [
+//     {
+//         id: 1,
+//         src: "./download1.gif"
+//     },
+//     {
+//         id: 2,
+//         src: "./download2.gif"
+//     },
+//     {
+//         id: 3,
+//         src: "./download3.gif"
+//     },
+//     {
+//         id: 4,
+//         src: "./download4.gif"
+//     },
+//     {
+//         id: 5,
+//         src: "./download5.gif"
+//     },
+//     {
+//         id: 6,
+//         src: "./download6.gif"
+//     },
+//     {
+//         id: 7,
+//         src: "./download7.gif"
+//     },
+//     {
+//         id: 8,
+//         src: "./download8.gif"
+//     },
+//     {
+//         id: 9,
+//         src: "./download9.gif"
+//     },
+//     {
+//         id: 10,
+//         src: "./download10.gif"
+//     }
+// ]
 
 export default function MusicPlayer() {
 
@@ -8,7 +50,7 @@ export default function MusicPlayer() {
         title: string;
         artist: string;
         url: string;
-        image: string;
+        cover?: string;
     };
 
 
@@ -62,7 +104,7 @@ export default function MusicPlayer() {
                     title: track.title,
                     artist: track.user.name,
                     url: `https://discoveryprovider.audius.co/v1/tracks/${track.id}/stream?client_id=${clientId}`,
-                    image: track.cover_photo,
+                    cover: track.artwork?.['1000x1000'],
                 }));
 
                 setTracks(formatted);
@@ -75,7 +117,6 @@ export default function MusicPlayer() {
 
 
     //toggles play/pause
-    //issue: quando clicco pause, la track ricomincia => deve ripartire dal punto in cui è stata messa in pausa
     const handlePlayPause = () => {
         if (!audioRef.current) return;
 
@@ -165,16 +206,25 @@ export default function MusicPlayer() {
     return (
         <>
             <div style={{ width: '100%', margin: '0 auto' }}>
-                <img src="./download1.gif" style={{ objectFit: 'fill', borderRadius: '10px', width: '100%' }} />
+                {currentTrack && currentTrack.cover ? (
+                    <img
+                        src={currentTrack.cover}
+                        alt={currentTrack.title}
+                        style={{ objectFit: 'cover', borderRadius: '10px', height: '280px', width: '100%'}}
+                    />
+                ) : (
+                    <img src="./image.jpg" alt={currentTrack?.title || 'cover-image'} style={{ objectFit: 'cover', borderRadius: '10px', height: '280px', width: '100%'}} />
+                )}
             </div>
-            <h2 style={{ margin: '1rem 0', fontWeight: 'normal', textAlign: 'center'}}>Music Player</h2>
+
+            {/* <h2 style={{ margin: '1rem 0', fontWeight: 'normal', textAlign: 'center'}}>Music Player</h2> */}
 
             <div style={{ boxShadow: "-3px -3px 0 0 #e5e7eb, 2px 2px 0 1px #d1d4d8", padding: '0.5rem' }}>
+
                 {/*tracce audius + loading icon caricamento*/}
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '2.2rem' }}>
                 {currentTrack ? (
                     <>
-                        <img src={currentTrack.image} style={{ width: '150px', height: '150px', objectFit: 'cover' }} />
-
                         <div className="title-track-container">
                             <h3 className="title-track"> 
                                 {currentTrack.title} - {currentTrack.artist} &nbsp;&nbsp;&nbsp;&nbsp;
@@ -191,11 +241,12 @@ export default function MusicPlayer() {
                         onEnded={handleNext}/>
                     </>
                 ) : (
-                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                        <path fill="currentColor" d="M13 2h-2v6h2zm0 14h-2v6h2zm9-5v2h-6v-2zM8 13v-2H2v2zm7-6h2v2h-2zm4-2h-2v2h2zM9 7H7v2h2zM5 5h2v2H5zm10 12h2v2h2v-2h-2v-2h-2zm-8 0v-2h2v2zv2H5v-2z"/></svg>
-                    </div>
+                    // <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22">
+                    //     <path fill="currentColor" d="M13 2h-2v6h2zm0 14h-2v6h2zm9-5v2h-6v-2zM8 13v-2H2v2zm7-6h2v2h-2zm4-2h-2v2h2zM9 7H7v2h2zM5 5h2v2H5zm10 12h2v2h2v-2h-2v-2h-2zm-8 0v-2h2v2zv2H5v-2z"/>
+                    // </svg>
+                    <img src="./hkplnwmb.gif" style={{ width: '20px', height: '20px' }} />
                 )}
+                </div>
                 
 
                 {/* barra di avanzamento */}

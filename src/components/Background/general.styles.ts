@@ -5,7 +5,7 @@ export const Container = styled.div<{ backgroundColor?: string, overflow?: strin
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: fit-content;
     overflow-y: ${({ overflow }) => overflow};
     
     background-color: ${({ backgroundColor }) => backgroundColor};

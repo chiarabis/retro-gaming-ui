@@ -18,6 +18,7 @@ const meta: Meta<typeof Navbar> = {
     fontSize: { control: "number", name: "Font Size" },
     backgroundColor: { control: "color", name: "Background Color" },
     position: { table: { disable: true } },
+    justify: { control: "select", options: ["flex-start", "center", "flex-end", "space-between", "space-around"], name: "Justify Content" },
   },
 };
 
@@ -33,6 +34,7 @@ export const Default: Story = {
     fontSize: 1.3,
     backgroundColor: "#d79fe6",
     position: "absolute",
+    justify: "center",
   },
   render: (args) => (
     <Navbar {...args} />

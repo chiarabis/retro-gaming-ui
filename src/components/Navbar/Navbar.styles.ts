@@ -36,14 +36,15 @@ export const NavbarContent = styled.div<{
     textColor: string;
     gap?: number;
     fontSize?: number;
+    justify?: string;
 }>`
     position: relative;
     width: 100%;
     height: 100%;
     display: flex;
-    padding: 1rem;
+    padding: 1rem 3rem;
     flex-direction: row;
-    justify-content: center;
+    justify-content: ${({ justify }) => justify};
     align-items: center;
     
     gap: ${({ gap }) => `${gap}rem`};

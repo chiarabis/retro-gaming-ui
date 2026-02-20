@@ -29,6 +29,7 @@ interface TextProps {
   widthChars: number;
   fontSize?: number;
   cursorSize?: number;
+  extraClass: string;
 }
 
 export const Wrap = styled.div<TextProps>`
@@ -43,8 +44,7 @@ export const Wrap = styled.div<TextProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "VT323", monospace;
-  
+  ${props => props.extraClass}
 `;
 
   // &:hover {
@@ -64,10 +64,12 @@ export const Typing = styled.span<{cursorSize: number, firstColor?: string, widt
   display: inline-block;
   white-space: nowrap;
   overflow: hidden;
+  color: ${props => props.firstColor};
   border-right: ${props => props.cursorSize || 2}px solid ${props => props.firstColor};
   font-family: "VT323", monospace;
+  font-weight: normal;
 
-  animation: ${({ widthChars }) => typingLoop(widthChars)} 4s steps(${props => props.widthChars}) infinite, ${blinkingCursor} 500ms step-end infinite;
+  animation: ${({ widthChars }) => typingLoop(widthChars)} 5s steps(${props => props.widthChars}) infinite, ${blinkingCursor} 500ms step-end infinite;
   
 `;
 //animation: ${typingLoop(props => props.widthChars)} 4s steps(${props => props.widthChars}) infinite, ${blinkingCursor} 500ms step-end infinite;

@@ -5,7 +5,7 @@ import { Container } from "../../components/Background/general.styles";
 
 
 export interface NavLink {
-  label: string;
+  name: string;
   href: string;
 }
 
@@ -18,6 +18,7 @@ export type NavbarProps = {
     fontSize?: number;
     backgroundColor: string;
     position?: string;
+    justify?: string;
 }
 
 
@@ -28,7 +29,8 @@ export default function Navbar({
     gap,
     fontSize,
     backgroundColor,
-    position
+    position,
+    justify = 'center',
 }: NavbarProps) {
 
     const [showSparkles, setShowSparkles] = useState<number | null>(null); 
@@ -46,7 +48,7 @@ export default function Navbar({
     return (
         <Container backgroundColor={backgroundColor} position={position}>
         <GridContainer gridColor={gridColor}>
-            <NavbarContent textColor={textColor} gap={gap} fontSize={fontSize}>
+            <NavbarContent textColor={textColor} gap={gap} fontSize={fontSize} justify={justify}>
                 
                 {links.map((link, index) => (
                     <div key={index} style={{ display: 'inline-block', position: 'relative', overflow: 'visible', cursor: 'pointer' }}
@@ -58,8 +60,9 @@ export default function Navbar({
 
                         <Link href={link.href}
                         ref={(el) => { textRefs.current[index] = el; }}>
-                            {link.label}
+                            {link.name}
                         </Link>
+
 
                         {showSparkles === index && textWidths[index] && 
                             <div>

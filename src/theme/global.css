@@ -43,7 +43,7 @@ p{
 
 .content {
   opacity: 0;
-  animation: fadeIn 0.8s ease forwards;
+  animation: fadeIn 1.2s ease forwards;
 }
 
 @keyframes fadeIn {
@@ -110,9 +110,14 @@ p{
 }
 
 @keyframes bounce {
-  0%   { transform: translateY(0); }
-  50%  { transform: translateY(-8px); }
-  100% { transform: translateY(0); }
+  0%   { transform: translateY(5px); }
+  50%  { transform: translateY(10px); }
+  100% { transform: translateY(5px); }
+}
+@keyframes beat {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.15); }
+  100% { transform: scale(1); }
 }
 
 .card-link:hover{
@@ -264,4 +269,11 @@ input[type="range"]::-moz-range-thumb {
   background: #f059a7;
   cursor: pointer;
   border: none;
+}
+
+
+/*menu start*/
+ul li::marker {
+  content: '✦';
+  color: #ff6794;
 }
