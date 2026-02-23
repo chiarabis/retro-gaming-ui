@@ -9,18 +9,19 @@ import Select from "../Select/Select"
 
 
 
-export default function CardWrapper() {
+export default function CardWrapper({ limit }: { limit: number }) {
   const [pokemons, setPokemons] = useState<Pokemon[]>([])
   const [types, setTypes] = useState<string[]>([])
   const [selectedType, setSelectedType] = useState("")
   const [selectedGender, setSelectedGender] = useState<"male" | "female" | "genderless">("male")
 
+  
 
     /* -------------------- FETCH TYPES -------------------- */
     useEffect(() => {
         fetch("https://pokeapi.co/api/v2/type")
-        .then((r) => r.json())
-        .then((d) => setTypes(d.results.map((t: any) => t.name)))
+        .then((response) => response.json())
+        .then((data) => setTypes(data.results.map((t: any) => t.name)))
     }, [])
 
     /* -------------------- EVOLUTIONS -------------------- */
@@ -33,6 +34,7 @@ export default function CardWrapper() {
 
         const evolutions: Evolution[] = []
         let current = evoData.chain
+
 
         while (current) {
         const name = current.species.name
@@ -53,7 +55,7 @@ export default function CardWrapper() {
 
     /* -------------------- BUILD POKEMON -------------------- */
     const buildPokemon = async (url: string): Promise<Pokemon> => {
-        const data = await fetch(url).then((r) => r.json())
+        const data = await fetch(url).then((response) => response.json())
         const evolutions = await getEvolutions(data.id)
 
         return {
@@ -72,6 +74,7 @@ export default function CardWrapper() {
     useEffect(() => {
         fetchDefaultPokemons()
     }, [])
+    
 
 
     /* -------------------- APPLY FILTERS -------------------- */
@@ -85,9 +88,8 @@ export default function CardWrapper() {
         const genderId = genderToId[gender]        
         const genderRes = await fetch(`https://pokeapi.co/api/v2/gender/${genderId}`)
         const genderData = await genderRes.json()
-        const genderPokemonNames = genderData.pokemon_species_details.map(
-            (p: any) => p.pokemon_species.name
-        )
+        const genderPokemonNames = genderData.pokemon_species_details.map((p: any) => p.pokemon_species.name)
+  
 
         if (type) {
             const typeRes = await fetch(`https://pokeapi.co/api/v2/type/${type}`)
@@ -95,7 +97,7 @@ export default function CardWrapper() {
             const filteredNames = typeData.pokemon
             .map((p: any) => p.pokemon.name)
             .filter((name: string) => genderPokemonNames.includes(name))
-            .slice(0, 4)
+            //.slice(0, 9)
 
             const promises = filteredNames.map((name: string) =>
                 buildPokemon(`https://pokeapi.co/api/v2/pokemon/${name}`)
@@ -114,12 +116,24 @@ export default function CardWrapper() {
 
 
 
+    
+
+
+    //limita card visibili
+    const visibleCards = limit ? pokemons.slice(0, limit) : pokemons;
+    //const visibleCards = pokemons.slice(0, limit || pokemons.length);
+
+    // if (loading) {
+    //     return <div style={{display: "flex", flexDirection: 'row', justifyContent: "center", gap: "0.75rem", width: '100%'}}>
+    //         <div className="pokeball"></div>
+    //     </div>;
+    // }
 
 
 
   return (
     <div style={{padding: "1.5rem", overflow: "visible", zIndex: 10, width: "100%" }}>
-        <h1 style={{ fontSize: "1.75rem", marginBottom: "1.5rem" }}>
+        <h1 style={{ fontSize: "1.75rem", margin: '0 0 1rem 0', fontWeight: 300 }}>
             Pokédex
         </h1>
 
@@ -188,7 +202,7 @@ export default function CardWrapper() {
                 </div>
             </div>
         </div>
-        
+    
 
 
 
@@ -200,10 +214,18 @@ export default function CardWrapper() {
           gridTemplateColumns: "repeat(auto-fill, minmax(16rem, 1fr))",
           alignItems: "stretch",
           marginTop: "1.5rem",
-        }}>
-        {pokemons.map((pokemon) => (
+        }}
+        >
+        {/* {pokemons.map((pokemon) => (
           <Card key={pokemon.id} pokemon={pokemon} selectedGender={selectedGender}  />
+        ))} */}
+        
+        
+        {visibleCards.map((pokemon) => (
+          <Card key={pokemon.id || pokemon.name} pokemon={pokemon} selectedGender={selectedGender}  />
         ))}
+        
+        
       </div>
     </div>
   )

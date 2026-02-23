@@ -69,7 +69,8 @@ export default function Select({
         borderColor={borderColor}
         bgColor={bgColor}
         fontColor={fontColor}
-        optionColor={optionColor}>
+        optionColor={optionColor}
+        >
 
         {capitalizeFirstLetter(selectedOption || "")}
 

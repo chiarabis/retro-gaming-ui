@@ -217,16 +217,15 @@ export default function MusicPlayer() {
                 )}
             </div>
 
-            {/* <h2 style={{ margin: '1rem 0', fontWeight: 'normal', textAlign: 'center'}}>Music Player</h2> */}
 
-            <div style={{ boxShadow: "-3px -3px 0 0 #e5e7eb, 2px 2px 0 1px #d1d4d8", padding: '0.5rem' }}>
+            <div style={{ boxShadow: "-3px -3px 0 0 #e5e7eb, 2px 2px 0 1px #d1d4d8", padding: '0.5rem', margin: '1rem' }}>
 
                 {/*tracce audius + loading icon caricamento*/}
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '2.2rem' }}>
                 {currentTrack ? (
                     <>
                         <div className="title-track-container">
-                            <h3 className="title-track"> 
+                            <h3 className="title-track">
                                 {currentTrack.title} - {currentTrack.artist} &nbsp;&nbsp;&nbsp;&nbsp;
                                 {currentTrack.title} - {currentTrack.artist} &nbsp;&nbsp;&nbsp;&nbsp;   
                             </h3>
@@ -241,10 +240,7 @@ export default function MusicPlayer() {
                         onEnded={handleNext}/>
                     </>
                 ) : (
-                    // <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22">
-                    //     <path fill="currentColor" d="M13 2h-2v6h2zm0 14h-2v6h2zm9-5v2h-6v-2zM8 13v-2H2v2zm7-6h2v2h-2zm4-2h-2v2h2zM9 7H7v2h2zM5 5h2v2H5zm10 12h2v2h2v-2h-2v-2h-2zm-8 0v-2h2v2zv2H5v-2z"/>
-                    // </svg>
-                    <img src="./hkplnwmb.gif" style={{ width: '20px', height: '20px' }} />
+                    <img src="./cd.gif" style={{ width: '20px', height: '20px' }} />
                 )}
                 </div>
                 

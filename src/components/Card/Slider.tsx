@@ -63,7 +63,7 @@ export default function Slider({evolutions}: SliderProps) {
                 <img src={current.image} alt={current.name} style={{ display: "block", margin: "0 auto" }}/>
                 <p style={{
                         fontSize: "0.8rem",
-                        marginTop: "0.25rem",
+                        margin: "0.25rem 0",
                         textTransform: "capitalize",
                     }}>
                     {current.name}

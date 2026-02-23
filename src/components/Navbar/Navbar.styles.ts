@@ -35,8 +35,8 @@ export const GridContainer = styled.div<{
 export const NavbarContent = styled.div<{
     textColor: string;
     gap?: number;
-    fontSize?: number;
     justify?: string;
+    fontSize?: number;
 }>`
     position: relative;
     width: 100%;
@@ -47,21 +47,35 @@ export const NavbarContent = styled.div<{
     justify-content: ${({ justify }) => justify};
     align-items: center;
     
-    gap: ${({ gap }) => `${gap}rem`};
-    font-size: ${({ fontSize }) => `${fontSize}rem`};
+    gap: ${({ gap }) => `${gap}rem`};   
 
-    color: ${({ textColor }) => textColor};
-`;
-
-export const Link = styled.a`
-    text-decoration: none;
-    color: inherit;
-    position: relative;
-    
-    &:hover {
+    a {
+        text-decoration: none;
+        cursor: pointer;
+        font-family: 'VT323', monospace;
+        font-size: ${({ fontSize }) => `${fontSize}rem`};
+        color: ${({ textColor }) => textColor};
+        font-weight: lighter;
+        cursor: pointer;
+    }
+    button {
+        background: none;
+        border: none;
+        font-family: 'VT323', monospace;
+        font-size: ${({ fontSize }) => `${fontSize}rem`};
+        color: ${({ textColor }) => textColor};
+        font-weight: lighter;
+        cursor: pointer;
+    }
+    a:hover {
+        text-shadow: 2px 3px 0px #ec99c4;
+    }
+    button:hover {
         text-shadow: 2px 3px 0px #ec99c4;
     }
 `;
+
+
 
 export const Sparkle = styled.span<{ 
     width: number,

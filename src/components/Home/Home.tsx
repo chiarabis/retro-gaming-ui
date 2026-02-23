@@ -1,9 +1,9 @@
 import { useState, useRef } from "react";
 import Modal from "../Modal/Modal";
 import { modals } from '../Modal/Modal';
-import CatWindow from "../CatWindow/CatWindow";
 import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
+import CardWrapper from "../Card/CardWrapper";
 
 
 
@@ -100,12 +100,15 @@ export default function Home() {
                 gap={6}
                 fontSize={2}
                 links={[
-                    { name: "Home", href: "#" },
-                    { name: "Contact", href: "" },
+                    { name: "Home", href: "/" },
+                    { name: "About" },
+                    { name: "Contact" },
                 ]}
                 textColor="#0f172b"
                 backgroundColor="transparent"
                 justify="center"
+                position="relative"
+                handleOpenModal={handleOpenModal}
             />
 
             <div style={{ width: '100%', height: '100%'}}>
@@ -159,6 +162,8 @@ export default function Home() {
                     </Modal>
                 );
             })}
+
+       
 
 
 

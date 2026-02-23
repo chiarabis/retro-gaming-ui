@@ -1,4 +1,4 @@
-import Card from "../Card/Card";
+import CardWrapper from "../Card/CardWrapper";
 import MusicPlayer from "../MusicPlayer/MusicPlayer";
 //import "../Loader/style.css";
 import CatWindow from "../CatWindow/CatWindow";
@@ -35,7 +35,7 @@ export const modals: ModalItem[] = [
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.5rem 1rem', marginTop: '1rem', borderTop: '2px solid #0f172b' }}>
                     <a style={{ margin: 0, textDecoration: 'none', color: '#0f172b', cursor: 'pointer'}} className="card-link glitch-anim" data-text="GitHub" href="https://github.com/chiarabis" target="_blank">GitHub</a>
-                    <a href="https://pokeapi.co/" target="_blank" style={{ margin: 0, textDecoration: 'none', color: '#0f172b', cursor: 'pointer', }} className="card-link glitch-anim" data-text="Pokemon API">Contact</a>
+                    <a style={{ margin: 0, textDecoration: 'none', color: '#0f172b', cursor: 'pointer', }} className="card-link glitch-anim" data-text="Contact" href="mailto:chiarabis@gmail.com">Contact</a>
                 </div>
             </>
         )
@@ -44,12 +44,11 @@ export const modals: ModalItem[] = [
     name: 'Pokemon cards', 
     content: (
         <>
-            <div style={{margin: '1rem', height: 'fit-content'}}>
-                <div style={{ display: 'flex', flexDirection: 'column', margin: '1rem 0', gap: '0.5rem'}}>
-                    <h2 style={{ margin: 0, fontWeight: 'normal'}}>Pokédex</h2>
-                    <span>Card example:</span>
-                </div>
-                <Card 
+            <div style={{margin: '1rem', height: 'fit-content', maxHeight: 'calc(100vh - 20rem)', overflow: 'auto'}}>
+                
+                <CardWrapper limit={1}/>
+                
+                {/* <Card 
                 pokemon={{
                     id: 1, 
                     name: 'Bulbasaur', 
@@ -58,7 +57,7 @@ export const modals: ModalItem[] = [
                     evolutions: [{name: 'Ivysaur', image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png'}, {name: 'Venusaur', image: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png'}], 
                     abilities: [{ability: {name: 'Overgrow'}}, {ability: {name: 'Chlorophyll'}}]
                 }}
-                selectedGender="male"/>
+                selectedGender="male"/> */}
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.5rem 1rem', marginTop: '1rem', borderTop: '2px solid #0f172b' }}>
                 <a style={{ margin: 0, textDecoration: 'none', color: '#0f172b', cursor: 'pointer'}} className="card-link glitch-anim" data-text="View project">View project</a>

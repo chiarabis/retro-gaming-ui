@@ -2,9 +2,9 @@ import type { Meta, StoryObj } from "@storybook/react";
 import Navbar from "./Navbar";
 
 const links = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/" },
-  { label: "Contact", href: "/" },
+  { name: "Home", href: "/" },
+  { name: "About", href: "/" },
+  { name: "Contact", href: "/" },
 ];
 
 const meta: Meta<typeof Navbar> = {

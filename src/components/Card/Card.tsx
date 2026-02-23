@@ -52,7 +52,7 @@ const typeColors: Record<string, string> = {
   normal: "#ccc",
 }
 
-const MAX_STAT = 255;
+//const MAX_STAT = 255;
 
 export default function Card({pokemon, selectedGender}: CardProps) {
   return (
@@ -91,14 +91,14 @@ export default function Card({pokemon, selectedGender}: CardProps) {
         ))}
       </div>
 
-      {/* MAIN */}
+      {/* IMAGE */}
       <img
         src={pokemon.sprites.front_default}
         alt={pokemon.name}
         style={{ display: "block", margin: "0 auto" }}
       />
-      <div style={{ display: "flex", flexDirection: "row", gap: "0.25rem"}}>
-        {/* {pokemon.stats.map((statObj: any) => {
+      {/*<div style={{ display: "flex", flexDirection: "row", gap: "0.25rem"}}>
+         {pokemon.stats.map((statObj: any) => {
             const percent = Math.min(
               Math.round((statObj.base_stat / MAX_STAT) * 100),
               100
@@ -113,9 +113,10 @@ export default function Card({pokemon, selectedGender}: CardProps) {
                 <span>{statObj.base_stat}</span>
               </div>
             );
-        })} */}
-      </div>
+        })}
+      </div> */}
 
+      {/**POKEMON NAME ACCORDING TO GENDER*/}
       <h2
         style={{
           fontSize: "1.5rem",

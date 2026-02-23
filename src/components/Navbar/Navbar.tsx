@@ -1,13 +1,15 @@
 
-import { GridContainer, NavbarContent, Sparkle, Link } from "./Navbar.styles";
+import { GridContainer, NavbarContent, Sparkle } from "./Navbar.styles";
 import { useState, useLayoutEffect, useRef } from "react";
 import { Container } from "../../components/Background/general.styles";
 
 
 export interface NavLink {
   name: string;
-  href: string;
+  href?: string;
 }
+
+
 
 
 export type NavbarProps = {
@@ -31,10 +33,12 @@ export default function Navbar({
     backgroundColor,
     position,
     justify = 'center',
-}: NavbarProps) {
+    handleOpenModal
+}: NavbarProps & { handleOpenModal: (name: string) => void }) {
 
     const [showSparkles, setShowSparkles] = useState<number | null>(null); 
-    const textRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+    //const textRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+    const textRefs = useRef<(HTMLAnchorElement | HTMLButtonElement | null)[]>([]);
     const [textWidths, setTextWidths] = useState<number[]>([]);
 
     //ottieni le larghezze dei testi dinamici dei link (pixels)
@@ -44,24 +48,46 @@ export default function Navbar({
     }, []);
 
 
+  
+
+
 
     return (
         <Container backgroundColor={backgroundColor} position={position}>
         <GridContainer gridColor={gridColor}>
-            <NavbarContent textColor={textColor} gap={gap} fontSize={fontSize} justify={justify}>
+            <NavbarContent textColor={textColor} gap={gap} justify={justify} fontSize={fontSize}>
                 
                 {links.map((link, index) => (
-                    <div key={index} style={{ display: 'inline-block', position: 'relative', overflow: 'visible', cursor: 'pointer' }}
-                        onMouseOver={() => setShowSparkles(index)} 
+                    <div key={index} style={{ display: 'inline-block', position: 'relative', overflow: 'visible', cursor: 'pointer' }} 
                         onMouseEnter={() => setShowSparkles(index)}
                         onMouseLeave={() => setShowSparkles(null)}
                         onFocus={() => setShowSparkles(index)}
                         onBlur={() => setShowSparkles(null)}>
 
-                        <Link href={link.href}
-                        ref={(el) => { textRefs.current[index] = el; }}>
-                            {link.name}
-                        </Link>
+                        {link.href ? (
+                            <a
+                                href={link.href}
+                                ref={(el) => {
+                                    textRefs.current[index] = el;
+                                }}
+                            >
+                                {link.name}
+                            </a>
+                            ) : (
+                            <button
+                                type="button"
+                                onClick={() => handleOpenModal(link.name)}
+                                ref={(el) => {
+                                    textRefs.current[index] = el;
+                                }}
+                            >
+                                {link.name}
+                            </button>
+                        )}
+                        
+                        
+                        
+                        
 
 
                         {showSparkles === index && textWidths[index] && 
