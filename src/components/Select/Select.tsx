@@ -37,10 +37,7 @@ export default function Select({
   const handleSelect = () => {
     setShowSelect((prev) => !prev);
   };
-  // const handleOptionSelect = (option: string) => {
-  //   setSelectedOption(option);
-  //   setShowSelect(false);
-  // };
+
   const handleOptionSelect = (option: string) => {
     setSelectedOption(option);
     setShowSelect(false);

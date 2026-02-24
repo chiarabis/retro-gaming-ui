@@ -3,7 +3,8 @@ import MusicPlayer from "../MusicPlayer/MusicPlayer";
 //import "../Loader/style.css";
 import CatWindow from "../CatWindow/CatWindow";
 import { ImageLoop } from "../ImageLoop";
-import Box from "../Box/Box";
+import Video from "../Video";
+import Button from "../Button/Button";
 
 
 
@@ -24,6 +25,7 @@ export const modals: ModalItem[] = [
             <>
                 <div style={{margin: '1rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',}}>
                     <ImageLoop/>
+                    
 
                     <div style={{ textAlign: 'justify', display: 'flex', flexDirection: 'column', gap: '0.2rem'}}>
                         <p style={{ margin: '0.75rem 0', textAlign: 'center'}}>Welcome!</p>
@@ -35,7 +37,7 @@ export const modals: ModalItem[] = [
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.5rem 1rem', marginTop: '1rem', borderTop: '2px solid #0f172b' }}>
                     <a style={{ margin: 0, textDecoration: 'none', color: '#0f172b', cursor: 'pointer'}} className="card-link glitch-anim" data-text="GitHub" href="https://github.com/chiarabis" target="_blank">GitHub</a>
-                    <a style={{ margin: 0, textDecoration: 'none', color: '#0f172b', cursor: 'pointer', }} className="card-link glitch-anim" data-text="Contact" href="mailto:chiarabis@gmail.com">Contact</a>
+                    <a style={{ margin: 0, textDecoration: 'none', color: '#0f172b', cursor: 'pointer', }} className="card-link glitch-anim" data-text="Contact" href="mailto:chiarabis@gmail.com">More</a>
                 </div>
             </>
         )
@@ -95,10 +97,10 @@ export const modals: ModalItem[] = [
                 <p style={{ textAlign: 'start'}}>Get in touch!</p>
                 {/* <p style={{ margin: 0, textAlign: 'justify'}}>GitHub:</p> */}
                 <textarea style={{ border: '2px solid #0f172b', width: '100%', height: '120px', padding: '0.25rem' }} placeholder="Your message..." />
-                <Box>Send</Box>
+                <Button title="Send" onClick={() => {}} /> {/**gestire invio messaggio */}
             </div>
 
-            <div style={{ position: 'absolute', bottom: '25%', right: '1rem' }}>
+            <div style={{ position: 'absolute', bottom: '29%', right: '1rem' }}>
                 <div style={{position: 'absolute', bottom: '50%', right: '0', transition: 'transform 0.2s', animation: 'bounce 1s infinite ease-in-out' }}>
                     <img src="./ghost.png" style={{ width: '40px' }} />
                 </div>
@@ -140,6 +142,14 @@ export const modals: ModalItem[] = [
             <div>Cat GIF on Cataas API</div>
             <div>Pokemon Card data on Pokemon API</div>
 
+        </div>
+    )
+  },
+  {
+    name: 'Nostalgic?',
+    content: (
+        <div style={{ margin: '1rem', width: "650px"}}>
+            <Video/>
         </div>
     )
   }

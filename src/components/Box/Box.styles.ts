@@ -8,7 +8,7 @@ type BoxProps = {
 
 export const BoxWrapper = styled.div<BoxProps>`
   width: fit-content;
-  height: 100%;
+  height: fit-content;
   padding: 0.5rem;
   font-size: 1.5rem;
   box-shadow: -3px -3px 0 0 ${props => props.firstColor}, 2px 2px 0 1px ${props => props.secondColor};

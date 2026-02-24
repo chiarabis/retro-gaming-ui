@@ -80,7 +80,6 @@ export default function Home() {
         setOpenModals(prev => prev.filter(n => n !== name));
     };
 
-
     const handleOpenModal = (name: string) => {
         setOpenModals(prev => {
             if (prev.includes(name)) {
@@ -90,6 +89,11 @@ export default function Home() {
             }
         });
     };
+
+
+
+    const [showTitle, setShowTitle] = useState(false);
+    
 
     
 
@@ -138,6 +142,8 @@ export default function Home() {
 
             </div>
 
+
+
             
             
             {/* {openModal && openFolder && (
@@ -164,6 +170,16 @@ export default function Home() {
             })}
 
        
+            <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'absolute', bottom: 70, right: 30}}>
+                {showTitle && <p style={{ animation: 'fadeIn 1s ease-in-out forwards', opacity: 0 }}>Nostalgic?</p>}
+                <button style={{border: 'none', background: 'transparent', cursor: 'pointer', padding: 0}} 
+                onClick={() => handleOpenModal('Nostalgic?')}
+                onMouseEnter={() => setShowTitle(true)}
+                onMouseLeave={() => setShowTitle(false)}>
+                    <img src="./Pink_computer_png.png" style={{ width: '120px', height: 'auto', transform: 'scaleX(-1)'}}/>
+                </button>
+                
+            </div>
 
 
 

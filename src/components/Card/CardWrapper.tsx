@@ -85,33 +85,65 @@ export default function CardWrapper({ limit }: { limit: number }) {
     }
 
     const applyFilters = async (type: string, gender: "male" | "female" | "genderless") => {
-        const genderId = genderToId[gender]        
-        const genderRes = await fetch(`https://pokeapi.co/api/v2/gender/${genderId}`)
-        const genderData = await genderRes.json()
-        const genderPokemonNames = genderData.pokemon_species_details.map((p: any) => p.pokemon_species.name)
+        // const genderId = genderToId[gender]        
+        // const genderRes = await fetch(`https://pokeapi.co/api/v2/gender/${genderId}`)
+        // const genderData = await genderRes.json()
+        // const genderPokemonNames = genderData.pokemon_species_details.map((p: any) => p.pokemon_species.name)
   
+       
+        // if (type) {
+        //     const typeRes = await fetch(`https://pokeapi.co/api/v2/type/${type}`)
+        //     const typeData = await typeRes.json()
+        //     const filteredNames = typeData.pokemon
+        //     .map((p: any) => p.pokemon.name)
+        //     .filter((name: string) => genderPokemonNames.includes(name))
+        //     //.slice(0, 9)
 
-        if (type) {
-            const typeRes = await fetch(`https://pokeapi.co/api/v2/type/${type}`)
-            const typeData = await typeRes.json()
-            const filteredNames = typeData.pokemon
-            .map((p: any) => p.pokemon.name)
-            .filter((name: string) => genderPokemonNames.includes(name))
-            //.slice(0, 9)
-
-            const promises = filteredNames.map((name: string) =>
-                buildPokemon(`https://pokeapi.co/api/v2/pokemon/${name}`)
-            )
-            setPokemons(await Promise.all(promises))
-            return
-        }
+        //     const promises = filteredNames.map((name: string) =>
+        //         buildPokemon(`https://pokeapi.co/api/v2/pokemon/${name}`)
+        //     )
+        //     setPokemons(await Promise.all(promises))
+        //     return
+        // }
 
 
-        const filtered = genderPokemonNames.slice(0, 9)
-        const promises = filtered.map((name: string) =>
-            buildPokemon(`https://pokeapi.co/api/v2/pokemon/${name}`)
-        )
-        setPokemons(await Promise.all(promises))
+        // const filtered = genderPokemonNames.slice(0, 9)
+        // const promises = filtered.map((name: string) =>
+        //     buildPokemon(`https://pokeapi.co/api/v2/pokemon/${name}`)
+        // )
+        // setPokemons(await Promise.all(promises))
+
+        try {
+    const genderId = genderToId[gender]
+
+    const [genderRes, typeRes] = await Promise.all([
+      fetch(`https://pokeapi.co/api/v2/gender/${genderId}`),
+      fetch(`https://pokeapi.co/api/v2/type/${type}`)
+    ])
+
+    const genderData = await genderRes.json()
+    const typeData = await typeRes.json()
+
+    const genderPokemonSet = new Set(
+      genderData.pokemon_species_details.map(
+        (p: any) => p.pokemon_species.name
+      )
+    )
+
+    const filteredNames = typeData.pokemon
+      .map((p: any) => p.pokemon.name)
+      .filter((name: string) => genderPokemonSet.has(name))
+
+    const promises = filteredNames.map((name: string) =>
+      buildPokemon(`https://pokeapi.co/api/v2/pokemon/${name}`)
+    )
+
+    const results = await Promise.all(promises)
+    setPokemons(results)
+
+  } catch (error) {
+    console.error("Errore nei filtri:", error)
+  }
     }
 
 

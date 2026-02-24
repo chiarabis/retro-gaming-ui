@@ -247,7 +247,7 @@ p{
   }
 }
 
-/*title track*/
+/*title audio track*/
 .title-track-container {
   width: 50%;
   overflow: hidden;
@@ -321,3 +321,4 @@ ul li::marker {
   content: '✦';
   color: #ff6794;
 }
+
