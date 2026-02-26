@@ -34,12 +34,6 @@ export function ImageLoop() {
       />
         
     </div>
-    
-    <iframe width="1" height="1" style={{position:'absolute', left:'-9999px', top:'-9999px', border:'none'}}
-    src="https://www.youtube.com/embed/5mKX21of0sM?si=SpS3G1sZc0ueGKMA&amp;controls=0&amp;clip=UgkxWTALJKyYx1fgZx_BUXf2rEVE_cIkGFIT&amp;clipt=EAAYoLIC" 
-    title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-    referrerPolicy="strict-origin-when-cross-origin" allowFullScreen>
-    </iframe>
       
     </>
   );

@@ -1,47 +1,5 @@
 import { useState, useRef, useEffect } from "react";
 
-// const gif = [
-//     {
-//         id: 1,
-//         src: "./download1.gif"
-//     },
-//     {
-//         id: 2,
-//         src: "./download2.gif"
-//     },
-//     {
-//         id: 3,
-//         src: "./download3.gif"
-//     },
-//     {
-//         id: 4,
-//         src: "./download4.gif"
-//     },
-//     {
-//         id: 5,
-//         src: "./download5.gif"
-//     },
-//     {
-//         id: 6,
-//         src: "./download6.gif"
-//     },
-//     {
-//         id: 7,
-//         src: "./download7.gif"
-//     },
-//     {
-//         id: 8,
-//         src: "./download8.gif"
-//     },
-//     {
-//         id: 9,
-//         src: "./download9.gif"
-//     },
-//     {
-//         id: 10,
-//         src: "./download10.gif"
-//     }
-// ]
 
 export default function MusicPlayer() {
 
@@ -77,7 +35,6 @@ export default function MusicPlayer() {
                     `https://discoveryprovider.audius.co/v1/users/${userId}/playlists`
                 );
                 const playlistsData = await playlistsRes.json();
-                console.log(playlistsData);
 
                 if (!playlistsData.data || playlistsData.data.length === 0) {
                     console.warn("Nessuna playlist pubblica trovata");
@@ -85,7 +42,6 @@ export default function MusicPlayer() {
                 }
 
                 const playlistId = playlistsData.data[0].id;
-                console.log(playlistId);
 
                 // ottenere tracks della playlist (playlistId dopo aver fetchato playlist con userId)
                 const tracksRes = await fetch(
@@ -106,7 +62,6 @@ export default function MusicPlayer() {
                     url: `https://discoveryprovider.audius.co/v1/tracks/${track.id}/stream?client_id=${clientId}`,
                     cover: track.artwork?.['1000x1000'],
                 }));
-
                 setTracks(formatted);
             } catch (err) {
                 console.error("Errore caricando playlist:", err);
@@ -198,50 +153,83 @@ export default function MusicPlayer() {
     // colorazione progressiva barra
     const progressPercent = duration ? (currentTime / duration) * 100 : 0;
 
-
-
-
+  const [tag, setTag] = useState(false);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
   
 
     return (
         <>
-            <div style={{ width: '100%', margin: '0 auto' }}>
-                {currentTrack && currentTrack.cover ? (
+            {/* <div style={{ width: '100%', margin: '0 auto' }}>
+                <img
+                    src="./image.jpg"
+                    alt="image"
+                    style={{ objectFit: 'cover', borderRadius: '10px', height: '280px', width: '100%'}}
+                />            
+            </div>
+
+            <div style={{ display: 'flex', justifyContent: 'end', padding: '0.5rem 1rem', marginTop: '1rem', borderTop: '2px solid #0f172b' }}>
+                <a href="https://audius.org/en/api" target="_blank" style={{ margin: 0, textDecoration: 'none', color: '#0f172b', cursor: 'pointer', }} className="card-link glitch-anim" data-text="Audius API">Audius API</a>
+            </div> */}
+            <div style={{ position: "relative", display: "inline-block" }}>
+                <a href="https://audius.org/en/api" target="_blank">
                     <img
-                        src={currentTrack.cover}
-                        alt={currentTrack.title}
-                        style={{ objectFit: 'cover', borderRadius: '10px', height: '280px', width: '100%'}}
+                        src="./image.jpg"
+                        alt="image tracks"
+                        style={{ borderRadius: "10px", width: '100%' }}
+                        onMouseEnter={() => setTag(true)}
+                        onMouseLeave={() => setTag(false)}
+                        onMouseMove={(e) => {
+                        const rect = e.currentTarget.getBoundingClientRect();
+                        setPosition({
+                            x: e.clientX - rect.left,
+                            y: e.clientY - rect.top,
+                        });
+                        }}
                     />
-                ) : (
-                    <img src="./image.jpg" alt={currentTrack?.title || 'cover-image'} style={{ objectFit: 'cover', borderRadius: '10px', height: '280px', width: '100%'}} />
+                </a>
+
+                {tag && (
+                <p
+                    style={{
+                    position: "absolute",
+                    top: position.y,
+                    left: position.x,
+                    right: 250 - position.x,
+                    pointerEvents: "none",
+                    transform: "translate(-50%, -120%)",
+                    background: "#fff",
+                    color: "#0f172b",
+                    padding: "2px 4px",
+                    fontSize: "0.85rem",
+                    }}>Tracks from Audius API</p>
                 )}
             </div>
 
 
-            <div style={{ boxShadow: "-3px -3px 0 0 #e5e7eb, 2px 2px 0 1px #d1d4d8", padding: '0.5rem', margin: '1rem' }}>
+            <div style={{ boxShadow: "-3px -3px 0 0 #e5e7eb, 2px 2px 0 1px #d1d4d8", padding: '0.5rem', marginTop: '1rem' }}>
 
                 {/*tracce audius + loading icon caricamento*/}
                 <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '2.2rem' }}>
-                {currentTrack ? (
-                    <>
-                        <div className="title-track-container">
-                            <h3 className="title-track">
-                                {currentTrack.title} - {currentTrack.artist} &nbsp;&nbsp;&nbsp;&nbsp;
-                                {currentTrack.title} - {currentTrack.artist} &nbsp;&nbsp;&nbsp;&nbsp;   
-                            </h3>
-                        </div>
+                    {currentTrack ? (
 
-                        
-                        <audio
-                        ref={audioRef}
-                        src={currentTrack.url}
-                        onPlay={() => setIsPlaying(true)}
-                        onPause={() => setIsPlaying(false)}
-                        onEnded={handleNext}/>
-                    </>
-                ) : (
-                    <img src="./cd.gif" style={{ width: '20px', height: '20px' }} />
-                )}
+                        <>
+                            <div className="title-track-container">
+                                <h3 className="title-track">
+                                    {currentTrack.title} - {currentTrack.artist} &nbsp;&nbsp;&nbsp;&nbsp;
+                                    {currentTrack.title} - {currentTrack.artist} &nbsp;&nbsp;&nbsp;&nbsp;   
+                                </h3>
+                            </div>
+
+                            <audio
+                            ref={audioRef}
+                            src={currentTrack.url}
+                            onPlay={() => setIsPlaying(true)}
+                            onPause={() => setIsPlaying(false)}
+                            onEnded={handleNext}/>
+                        </>
+                    ) : (
+                        <img src="./cd.gif" style={{ width: '20px', height: '20px' }} />
+                    )}
                 </div>
                 
 
@@ -274,23 +262,29 @@ export default function MusicPlayer() {
 
                 {/*music player command buttons */}
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <button onClick={handlePrev} type="button" className="player-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M6 4h2v16H6zm12 0h-2v2h-2v3h-2v2h-2v2h2v3h2v2h2v2h2z"/></svg>
-                    </button>
-                    
-                    <button onClick={handlePlayPause} type="button" className="player-btn">
-                        {isPlaying ? (
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M10 4H5v16h5zm9 0h-5v16h5z"/></svg>
-                        ) : (
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M10 20H8V4h2v2h2v3h2v2h2v2h-2v2h-2v3h-2z"/></svg>
-                        )}
-                    </button>
-                    
-                    <button onClick={handleNext} type="button" className="player-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M6 4h2v2h2v2h2v2h2v4h-2v2h-2v2H8v2H6zm12 0h-2v16h2z"/></svg>
-                    </button>
-                    
-                    <button onClick={handleRedo} type="button" className="player-btn">
+                    <div>
+                        <button onClick={handlePrev} type="button" className="player-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M6 4h2v16H6zm12 0h-2v2h-2v3h-2v2h-2v2h2v3h2v2h2v2h2z"/></svg>
+                        </button>
+                        
+                        <button onClick={handlePlayPause} type="button" className="player-btn">
+                            {isPlaying ? (
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M10 4H5v16h5zm9 0h-5v16h5z"/></svg>
+                            ) : (
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M10 20H8V4h2v2h2v3h2v2h2v2h-2v2h-2v3h-2z"/></svg>
+                            )}
+                        </button>
+                        
+                        <button onClick={handleNext} type="button" className="player-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M6 4h2v2h2v2h2v2h2v4h-2v2h-2v2H8v2H6zm12 0h-2v16h2z"/></svg>
+                        </button>
+                        
+                        <button onClick={handleRedo} type="button" className="player-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M16 4h-2v2h2v2H6v2H4v8h2v2h6v-2H6v-8h10v2h-2v2h2v-2h2v-2h2V8h-2V6h-2z"/></svg>
+                        </button>
+                    </div>
+
+                    <button type="button" className="player-btn">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M16 4h-2v2h2v2H6v2H4v8h2v2h6v-2H6v-8h10v2h-2v2h2v-2h2v-2h2V8h-2V6h-2z"/></svg>
                     </button>
                 </div>

@@ -12,9 +12,9 @@ const menuStart = [
 
 
 export default function Footer({
-    handleOpenModal,
+    handleWindow,
 }: {
-    handleOpenModal: (name: string) => void;
+    handleWindow: (name: string) => void;
 }) {
 
     const [dateTime, setDateTime] = useState(new Date());
@@ -95,7 +95,7 @@ export default function Footer({
                         <ul style={{display: 'flex', gap: '0.3rem', flexDirection: 'column', alignItems: 'flex-start', margin: 0, padding: 0, listStylePosition: 'inside', }}>
                         {menuStart.map((item, index) => (
                             <li key={index}>
-                                <button className="card-link glitch-anim" data-text={item.name} onClick={() => {handleOpenModal(item.name); setOpenMenu(false);}}
+                                <button className="card-link glitch-anim" data-text={item.name} onClick={() => {handleWindow(item.name); setOpenMenu(false);}}
                                 style={{ textDecoration: 'none', color: '#0f172b', margin: '0 0.5rem', background: 'none', border: 'none', cursor: 'pointer', fontFamily: "VT323", fontSize: '1.2rem' }}>{item.name}</button>
                             </li>  
                         ))}

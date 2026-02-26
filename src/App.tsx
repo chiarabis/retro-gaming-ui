@@ -4,6 +4,7 @@ import ShapesBackground from "./components/Background/Shapes/ShapesBackground";
 import Home from "./components/Home/Home";
 import Loader from "./components/Loader/Loader";
 import { useState, useEffect } from "react";
+import { WindowManagerProvider } from "./context/WindowManagerContext";
 
 function App() {
 
@@ -16,6 +17,10 @@ function App() {
     }, 6000);
     return () => clearTimeout(timer);
   }, []);
+
+
+  /* checkbox per cambiare background */
+  
 
   return (
     <>
@@ -40,6 +45,24 @@ function App() {
                   variant="star"
                   overflow="scroll"
                 />
+
+                {/* <div>
+                  <label>Star
+                    <input type="checkbox" onChange={toggleBg} />
+                  </label>
+                  
+                  <label>Pois
+                    <input type="checkbox" onChange={toggleBg} />
+                  </label>
+
+                  <label>Bubble
+                    <input type="checkbox" onChange={toggleBg} />
+                  </label>
+
+                  <label>Heart
+                    <input type="checkbox" onChange={toggleBg} />
+                  </label>
+                </div> */}
         
                 <main style={{ 
                   zIndex: 1,  display: "flex", 
@@ -55,7 +78,9 @@ function App() {
 
                 
   
-                <Home/>
+                <WindowManagerProvider>
+                  <Home/>
+                </WindowManagerProvider>
 
               
 

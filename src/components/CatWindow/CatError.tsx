@@ -25,7 +25,6 @@ export default function CatError() {
             right: 0
         }}
         />
-
     </>
   );
 }

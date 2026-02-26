@@ -1,10 +1,20 @@
 import { useEffect, useState } from "react";
 import CatError from "./CatError";
+import Button from "../Button/Button";
+import { useWindowManager } from "../../context/WindowManagerContext";
 
+//   name,
+//   errorStatus,
+// } : {
+//   name: string;
+//   errorStatus: number;
 
 export default function CatWindow() {
   const [gif, setGif] = useState<string | null>(null);
   const [errorStatus, setErrorStatus] = useState<number | null>(null);
+
+
+  //const {closeWindow} = useWindowManager();
 
   useEffect(() => {
     const loadGif = async () => {
@@ -32,6 +42,7 @@ export default function CatWindow() {
 
 
 
+
   const renderError = () => {
     switch (errorStatus) {
       case 404:
@@ -46,6 +57,7 @@ export default function CatWindow() {
                 <img src="./alert.png" alt="error" style={{ width: '60px', height: '60px' }} />
                 <h1 style={{ fontWeight: 'lighter', margin: 0 }} className="card-link glitch-anim">Error 404</h1>
                 <span>Ups! Cat.exe not found ❌</span>
+                {/* <Button title="OK" onClick={() => closeWindow(name)}/> */}
                 <CatError/>
             </div>
         );
@@ -63,6 +75,7 @@ export default function CatWindow() {
                 <img src="./alert.png" alt="error" style={{ width: '60px', height: '60px' }} />
                 <h1 style={{ fontWeight: 'lighter', margin: 0 }}>Error 500</h1>
                 <span>Internal server error. Please try again later.<br/>Cat is fixing up 🛠️</span>
+                {/* <Button title="OK" onClick={() => closeWindow(name)}/> */}
                 <CatError/>
             </div>
         );
@@ -80,32 +93,66 @@ export default function CatWindow() {
                 
                 <h1 style={{ fontWeight: 'lighter', margin: 0 }}>Undefined Error</h1>
                 <span>I'm sorry, something went wrong. <br/>Go Back. 🔙</span>
+                {/* <Button title="OK" onClick={() => closeWindow(name)}/> */}
                 <CatError/>
             </div>
         );
     }
   };
 
-
+  const [tag, setTag] = useState(false);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
 
 
   return (
     <>
         <div style={{  display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: '1rem', margin: '1rem' }}>
+
             {gif ? 
               <>
-                <img src={gif} alt="gif" style={{ borderRadius: '10px' }} />
-                <a style={{ marginTop: '2rem', textDecoration: 'none', color: '#0f172b', cursor: 'pointer', fontSize: '1.25rem' }} className="card-link glitch-anim" data-text="View Repo onGitHub" href="https://github.com/chiarabis" target="_blank">
+                <div style={{ position: "relative", display: "inline-block" }}>
+                  <a href="https://cataas.com/doc.html" target="_blank">
+                    <img
+                      src={gif}
+                      alt="gif"
+                      style={{ borderRadius: "10px" }}
+                      onMouseEnter={() => setTag(true)}
+                      onMouseLeave={() => setTag(false)}
+                      onMouseMove={(e) => {
+                        const rect = e.currentTarget.getBoundingClientRect();
+                        setPosition({
+                          x: e.clientX - rect.left,
+                          y: e.clientY - rect.top,
+                        });
+                      }}
+                    />
+                  </a>
+
+                  {tag && (
+                    <p
+                      style={{
+                        position: "absolute",
+                        top: position.y,
+                        left: position.x,
+                        right: 350 - position.x,
+                        pointerEvents: "none",
+                        transform: "translate(-50%, -120%)",
+                        background: "#fff",
+                        color: "#0f172b",
+                        padding: "2px 4px",
+                        fontSize: "0.85rem",
+                      }}>Cat gif by CATAAS API</p>
+                  )}
+                </div>
+
+                
+                <a style={{ textDecoration: 'none', color: '#0f172b', cursor: 'pointer', fontSize: '1.25rem' }} className="card-link glitch-anim" data-text="View Repo onGitHub" href="https://github.com/chiarabis" target="_blank">
                 View Repo on GitHub
                 </a>
-              </>
-            : renderError()}
+              
+              </> : renderError()
+            }
         </div>
-
-        {/* <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.5rem 1rem', marginTop: '1rem', borderTop: '2px solid #0f172b' }}>
-            <a style={{ margin: 0, textDecoration: 'none', color: '#0f172b', cursor: 'pointer'}} className="card-link glitch-anim" data-text="GitHub" href="https://github.com/chiarabis" target="_blank">GitHub</a>
-            <a href="" target="_blank" style={{ margin: 0, textDecoration: 'none', color: '#0f172b', cursor: 'pointer', }} className="card-link glitch-anim" data-text="Pokemon API">Contact</a>
-        </div> */}
     </>
 );
 }

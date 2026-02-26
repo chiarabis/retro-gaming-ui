@@ -33,8 +33,8 @@ export default function Navbar({
     backgroundColor,
     position,
     justify = 'center',
-    handleOpenModal
-}: NavbarProps & { handleOpenModal: (name: string) => void }) {
+    handleWindow
+}: NavbarProps & { handleWindow: (name: string) => void }) {
 
     const [showSparkles, setShowSparkles] = useState<number | null>(null); 
     //const textRefs = useRef<(HTMLAnchorElement | null)[]>([]);
@@ -76,7 +76,7 @@ export default function Navbar({
                             ) : (
                             <button
                                 type="button"
-                                onClick={() => handleOpenModal(link.name)}
+                                onClick={() => handleWindow(link.name)}
                                 ref={(el) => {
                                     textRefs.current[index] = el;
                                 }}

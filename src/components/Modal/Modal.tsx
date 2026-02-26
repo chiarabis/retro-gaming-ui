@@ -62,7 +62,7 @@ export const modals: ModalItem[] = [
                 selectedGender="male"/> */}
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-between', padding: '0.5rem 1rem', marginTop: '1rem', borderTop: '2px solid #0f172b' }}>
-                <a style={{ margin: 0, textDecoration: 'none', color: '#0f172b', cursor: 'pointer'}} className="card-link glitch-anim" data-text="View project">View project</a>
+                <a href="https://github.com/chiarabis" target="_blank" style={{ margin: 0, textDecoration: 'none', color: '#0f172b', cursor: 'pointer'}} className="card-link glitch-anim" data-text="View project">View project</a>
                 <a href="https://pokeapi.co/" target="_blank" style={{ margin: 0, textDecoration: 'none', color: '#0f172b', cursor: 'pointer', }} className="card-link glitch-anim" data-text="Pokemon API">Pokemon API</a>
             </div>
         </>
@@ -71,9 +71,11 @@ export const modals: ModalItem[] = [
   { 
     name: 'Music Player', 
     content: (
-        <div style={{ margin: '1rem', width: "380px"}}>
-            <MusicPlayer/>
-        </div>
+        <>
+            <div style={{ margin: '1rem', width: "380px"}}>
+                <MusicPlayer/>
+            </div>
+        </>
     )
   },
   { 
@@ -95,7 +97,6 @@ export const modals: ModalItem[] = [
         <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'center', margin: '1rem', gap: '1rem', position: 'relative'}}>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', width: '100%'}}>
                 <p style={{ textAlign: 'start'}}>Get in touch!</p>
-                {/* <p style={{ margin: 0, textAlign: 'justify'}}>GitHub:</p> */}
                 <textarea style={{ border: '2px solid #0f172b', width: '100%', height: '120px', padding: '0.25rem' }} placeholder="Your message..." />
                 <Button title="Send" onClick={() => {}} /> {/**gestire invio messaggio */}
             </div>
@@ -141,14 +142,14 @@ export const modals: ModalItem[] = [
         <div style={{ margin: '1rem', width: "380px"}}>
             <div>Cat GIF on Cataas API</div>
             <div>Pokemon Card data on Pokemon API</div>
-
+            <div>Music by Audius API</div>
         </div>
     )
   },
   {
     name: 'Nostalgic?',
     content: (
-        <div style={{ margin: '1rem', width: "650px"}}>
+        <div style={{ margin: '1rem', width: "650px", display: 'flex', justifyContent: 'center'}}>
             <Video/>
         </div>
     )

@@ -3,17 +3,17 @@ import Modal from "../Modal/Modal";
 import { modals } from '../Modal/Modal';
 import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
-import CardWrapper from "../Card/CardWrapper";
+
 
 
 
 const folders = [
     { name: 'About', icon: '/rxrsxrta.png' },
-    { name: 'Pokemon cards', icon: '/rxrsxrta.png' },
-    { name: 'Music Player', icon: '/rxrsxrta.png' },
-    { name: 'Pixel Icons', icon: '/rxrsxrta.png' },
+    { name: 'Pokemon cards', icon: '/rxrsxrta.png' }, //mini icona pokeball a lato
+    { name: 'Music Player', icon: '/rxrsxrta.png' }, //mini icona cd a lato
+    { name: 'Pixel Icons', icon: '/rxrsxrta.png' }, //mini icona pixel a lato
     // { name: 'Storybook', icon: '/rxrsxrta.png' },
-    { name: 'Contact', icon: '/rxrsxrta.png' },
+    { name: 'Contact', icon: '/rxrsxrta.png' }, //mini icona lettera a lato
 ]
 
 
@@ -80,7 +80,7 @@ export default function Home() {
         setOpenModals(prev => prev.filter(n => n !== name));
     };
 
-    const handleOpenModal = (name: string) => {
+    const handleWindow = (name: string) => {
         setOpenModals(prev => {
             if (prev.includes(name)) {
                 return prev.filter(n => n !== name);
@@ -112,7 +112,7 @@ export default function Home() {
                 backgroundColor="transparent"
                 justify="center"
                 position="relative"
-                handleOpenModal={handleOpenModal}
+                handleWindow={handleWindow}
             />
 
             <div style={{ width: '100%', height: '100%'}}>
@@ -173,7 +173,7 @@ export default function Home() {
             <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'absolute', bottom: 70, right: 30}}>
                 {showTitle && <p style={{ animation: 'fadeIn 1s ease-in-out forwards', opacity: 0 }}>Nostalgic?</p>}
                 <button style={{border: 'none', background: 'transparent', cursor: 'pointer', padding: 0}} 
-                onClick={() => handleOpenModal('Nostalgic?')}
+                onClick={() => handleWindow('Nostalgic?')}
                 onMouseEnter={() => setShowTitle(true)}
                 onMouseLeave={() => setShowTitle(false)}>
                     <img src="./Pink_computer_png.png" style={{ width: '120px', height: 'auto', transform: 'scaleX(-1)'}}/>
@@ -181,10 +181,7 @@ export default function Home() {
                 
             </div>
 
-
-
-            <Footer handleOpenModal={handleOpenModal}/>
-
+            <Footer handleWindow={handleWindow}/>
         </>
     );
 }

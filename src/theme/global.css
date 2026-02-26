@@ -164,6 +164,7 @@ p{
   100% { transform: scale(1); }
 }
 
+
 .card-link:hover{
   text-shadow: 2px 2px 0px #ec99c4;
 }
