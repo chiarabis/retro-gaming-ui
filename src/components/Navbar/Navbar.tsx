@@ -21,6 +21,7 @@ export type NavbarProps = {
     backgroundColor: string;
     position?: string;
     justify?: string;
+    height: string;
 }
 
 
@@ -33,6 +34,7 @@ export default function Navbar({
     backgroundColor,
     position,
     justify = 'center',
+    height,
     handleWindow
 }: NavbarProps & { handleWindow: (name: string) => void }) {
 
@@ -53,7 +55,7 @@ export default function Navbar({
 
 
     return (
-        <Container backgroundColor={backgroundColor} position={position}>
+        <Container backgroundColor={backgroundColor} position={position} height={height}>
         <GridContainer gridColor={gridColor}>
             <NavbarContent textColor={textColor} gap={gap} justify={justify} fontSize={fontSize}>
                 

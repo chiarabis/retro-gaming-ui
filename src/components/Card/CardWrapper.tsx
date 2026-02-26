@@ -114,37 +114,37 @@ export default function CardWrapper({ limit }: { limit: number }) {
         // setPokemons(await Promise.all(promises))
 
         try {
-    const genderId = genderToId[gender]
+            const genderId = genderToId[gender]
 
-    const [genderRes, typeRes] = await Promise.all([
-      fetch(`https://pokeapi.co/api/v2/gender/${genderId}`),
-      fetch(`https://pokeapi.co/api/v2/type/${type}`)
-    ])
+            const [genderRes, typeRes] = await Promise.all([
+              fetch(`https://pokeapi.co/api/v2/gender/${genderId}`),
+              fetch(`https://pokeapi.co/api/v2/type/${type}`)
+            ])
 
-    const genderData = await genderRes.json()
-    const typeData = await typeRes.json()
+            const genderData = await genderRes.json()
+            const typeData = await typeRes.json()
 
-    const genderPokemonSet = new Set(
-      genderData.pokemon_species_details.map(
-        (p: any) => p.pokemon_species.name
-      )
-    )
+            const genderPokemonSet = new Set(
+              genderData.pokemon_species_details.map(
+                (p: any) => p.pokemon_species.name
+              )
+            )
 
-    const filteredNames = typeData.pokemon
-      .map((p: any) => p.pokemon.name)
-      .filter((name: string) => genderPokemonSet.has(name))
+            const filteredNames = typeData.pokemon
+              .map((p: any) => p.pokemon.name)
+              .filter((name: string) => genderPokemonSet.has(name))
 
-    const promises = filteredNames.map((name: string) =>
-      buildPokemon(`https://pokeapi.co/api/v2/pokemon/${name}`)
-    )
+            const promises = filteredNames.map((name: string) =>
+              buildPokemon(`https://pokeapi.co/api/v2/pokemon/${name}`)
+            )
 
-    const results = await Promise.all(promises)
-    setPokemons(results)
+            const results = await Promise.all(promises)
+            setPokemons(results)
 
-  } catch (error) {
-    console.error("Errore nei filtri:", error)
-  }
-    }
+          } catch (error) {
+            console.error("Errore nei filtri:", error)
+          }
+        }
 
 
 

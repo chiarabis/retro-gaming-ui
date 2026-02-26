@@ -9,15 +9,12 @@ import Navbar from "../Navbar/Navbar";
 
 const folders = [
     { name: 'About', icon: '/rxrsxrta.png' },
-    { name: 'Pokemon cards', icon: '/rxrsxrta.png' }, //mini icona pokeball a lato
+    { name: 'Pokemon Cards', icon: '/rxrsxrta.png' }, //mini icona pokeball a lato
     { name: 'Music Player', icon: '/rxrsxrta.png' }, //mini icona cd a lato
     { name: 'Pixel Icons', icon: '/rxrsxrta.png' }, //mini icona pixel a lato
     // { name: 'Storybook', icon: '/rxrsxrta.png' },
     { name: 'Contact', icon: '/rxrsxrta.png' }, //mini icona lettera a lato
 ]
-
-
-
 
 
 
@@ -112,6 +109,7 @@ export default function Home() {
                 backgroundColor="transparent"
                 justify="center"
                 position="relative"
+                height="fit-content"
                 handleWindow={handleWindow}
             />
 

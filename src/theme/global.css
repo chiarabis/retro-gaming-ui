@@ -30,6 +30,7 @@ body {
     color: #0f172b;
     font-family: "VT323", monospace;
     overflow-x: hidden;
+    
 }
 
 p{
@@ -317,9 +318,11 @@ input[type="range"]::-moz-range-thumb {
 }
 
 
-/*menu start*/
-ul li::marker {
-  content: '✦';
-  color: #ff6794;
+/* scale button menu start */
+.bg-hover{
+  background: #ff6794;
+  transition: all 0.1s ease-in-out;
 }
-
+.bg-hover:hover{
+  background: #fff;
+}

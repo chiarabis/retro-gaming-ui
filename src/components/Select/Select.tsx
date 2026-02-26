@@ -19,7 +19,7 @@ export type SelectProps = {
 export default function Select({
   optionsList,
   borderColor = "#f059a7",
-  bgColor = "#fffdfd",
+  bgColor = "#fff",
   fontColor = "#0f172b",
   optionColor = "#ec99c4",
   placeholder,

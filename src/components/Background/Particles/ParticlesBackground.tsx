@@ -16,7 +16,7 @@ export type ParticlesBackgroundProps = {
 export default function ParticlesBackground({ 
     count = 15,
     colors = ["#00ffff", "#e60076", "#F8FF2A"],
-    backgroundColor = "transparent",
+    backgroundColor,
     variant,
     overflow,
 }: ParticlesBackgroundProps) {
@@ -24,7 +24,7 @@ export default function ParticlesBackground({
     const bubbleSizes = [12, 18, 24, 30, 36];
 
     return (
-    <Container backgroundColor={backgroundColor} overflow={overflow}>
+    <Container backgroundColor={backgroundColor} overflow={overflow} position="absolute" height="100vh">
       {Array.from({ length: count }).map((_, index) => {
         const left = (index / count) * 100;
         const delay = -random(0, 5);

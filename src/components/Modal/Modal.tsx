@@ -43,7 +43,7 @@ export const modals: ModalItem[] = [
         )
     },
   { 
-    name: 'Pokemon cards', 
+    name: 'Pokemon Cards', 
     content: (
         <>
             <div style={{margin: '1rem', height: 'fit-content', maxHeight: 'calc(100vh - 20rem)', overflow: 'auto'}}>

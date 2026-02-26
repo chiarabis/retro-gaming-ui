@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import CatError from "./CatError";
-import Button from "../Button/Button";
-import { useWindowManager } from "../../context/WindowManagerContext";
+
 
 //   name,
 //   errorStatus,
@@ -117,7 +116,7 @@ export default function CatWindow() {
                       alt="gif"
                       style={{ borderRadius: "10px" }}
                       onMouseEnter={() => setTag(true)}
-                      onMouseLeave={() => setTag(false)}
+                      onMouseLeave={() => setTag(true)}
                       onMouseMove={(e) => {
                         const rect = e.currentTarget.getBoundingClientRect();
                         setPosition({
@@ -134,7 +133,6 @@ export default function CatWindow() {
                         position: "absolute",
                         top: position.y,
                         left: position.x,
-                        right: 350 - position.x,
                         pointerEvents: "none",
                         transform: "translate(-50%, -120%)",
                         background: "#fff",
